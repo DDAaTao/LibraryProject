@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.library.LibraryProject.dao.UserDao">
+    <!--auto generated Code-->
+    <resultMap id="BaseResultMap" type="com.library.LibraryProject.entity.User">
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_number" property="userNumber" jdbcType="VARCHAR"/>
+        <result column="user_password" property="userPassword" jdbcType="VARCHAR"/>
+        <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
+        <result column="user_academy" property="userAcademy" jdbcType="VARCHAR"/>
+        <result column="user_profession" property="userProfession" jdbcType="VARCHAR"/>
+        <result column="user_violation" property="userViolation" jdbcType="VARCHAR"/>
+        <result column="user_status" property="userStatus" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="Base_Column_List">
+        user_id,
+        user_name,
+        user_number,
+        user_password,
+        user_sex,
+        user_academy,
+        user_profession,
+        user_violation,
+        user_status
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="user.userId">
+        INSERT INTO user (
+            user_id,
+            user_name,
+            user_number,
+            user_password,
+            user_sex,
+            user_academy,
+            user_profession,
+            user_violation,
+            user_status
+        ) VALUES (
+            #{user.userId,jdbcType=INTEGER},
+            #{user.userName,jdbcType=VARCHAR},
+            #{user.userNumber,jdbcType=VARCHAR},
+            #{user.userPassword,jdbcType=VARCHAR},
+            #{user.userSex,jdbcType=VARCHAR},
+            #{user.userAcademy,jdbcType=VARCHAR},
+            #{user.userProfession,jdbcType=VARCHAR},
+            #{user.userViolation,jdbcType=VARCHAR},
+            #{user.userStatus,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="user.userId">
+        INSERT INTO user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="user.userId!=null"> user_id,</if>
+            <if test="user.userName!=null"> user_name,</if>
+            <if test="user.userNumber!=null"> user_number,</if>
+            <if test="user.userPassword!=null"> user_password,</if>
+            <if test="user.userSex!=null"> user_sex,</if>
+            <if test="user.userAcademy!=null"> user_academy,</if>
+            <if test="user.userProfession!=null"> user_profession,</if>
+            <if test="user.userViolation!=null"> user_violation,</if>
+            <if test="user.userStatus!=null"> user_status,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="user.userId!=null">#{user.userId,jdbcType=INTEGER},
+            </if>
+            <if test="user.userName!=null">#{user.userName,jdbcType=VARCHAR},
+            </if>
+            <if test="user.userNumber!=null">#{user.userNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="user.userPassword!=null">#{user.userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="user.userSex!=null">#{user.userSex,jdbcType=VARCHAR},
+            </if>
+            <if test="user.userAcademy!=null">#{user.userAcademy,jdbcType=VARCHAR},
+            </if>
+            <if test="user.userProfession!=null">#{user.userProfession,jdbcType=VARCHAR},
+            </if>
+            <if test="user.userViolation!=null">#{user.userViolation,jdbcType=VARCHAR},
+            </if>
+            <if test="user.userStatus!=null">#{user.userStatus,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO user (
+        <include refid="Base_Column_List"/>
+        )VALUES
+        <foreach collection="users" item="user" index="index" separator=",">
+            (
+            #{user.userId,jdbcType=INTEGER},
+            #{user.userName,jdbcType=VARCHAR},
+            #{user.userNumber,jdbcType=VARCHAR},
+            #{user.userPassword,jdbcType=VARCHAR},
+            #{user.userSex,jdbcType=VARCHAR},
+            #{user.userAcademy,jdbcType=VARCHAR},
+            #{user.userProfession,jdbcType=VARCHAR},
+            #{user.userViolation,jdbcType=VARCHAR},
+            #{user.userStatus,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE user
+        <set>
+            <if test="user.userId != null"> user_id= #{user.userId,jdbcType=INTEGER},</if>
+            <if test="user.userName != null"> user_name= #{user.userName,jdbcType=VARCHAR},</if>
+            <if test="user.userNumber != null"> user_number= #{user.userNumber,jdbcType=VARCHAR},</if>
+            <if test="user.userPassword != null"> user_password= #{user.userPassword,jdbcType=VARCHAR},</if>
+            <if test="user.userSex != null"> user_sex= #{user.userSex,jdbcType=VARCHAR},</if>
+            <if test="user.userAcademy != null"> user_academy= #{user.userAcademy,jdbcType=VARCHAR},</if>
+            <if test="user.userProfession != null"> user_profession= #{user.userProfession,jdbcType=VARCHAR},</if>
+            <if test="user.userViolation != null"> user_violation= #{user.userViolation,jdbcType=VARCHAR},</if>
+            <if test="user.userStatus != null"> user_status= #{user.userStatus,jdbcType=VARCHAR}</if>
+        </set>
+        WHERE user_id = #{user.userId,jdbcType=INTEGER}
+    </update>
+
+<!--auto generated by codehelper on 2018-09-14 00:08:56-->
+	<select id="findByUserId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where user_id=#{userId,jdbcType=INTEGER}
+    </select>
+</mapper>
+
