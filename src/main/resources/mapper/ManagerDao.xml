@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.library.LibraryProject.dao.ManagerDao">
+    <!--auto generated Code-->
+    <resultMap id="BaseResultMap" type="com.library.LibraryProject.entity.Manager">
+        <result column="manager_id" property="managerId" jdbcType="INTEGER"/>
+        <result column="manager_account" property="managerAccount" jdbcType="VARCHAR"/>
+        <result column="manager_pwd" property="managerPwd" jdbcType="VARCHAR"/>
+        <result column="manager_authority" property="managerAuthority" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="Base_Column_List">
+        manager_id,
+        manager_account,
+        manager_pwd,
+        manager_authority
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="manager.managerId">
+        INSERT INTO manager (
+            manager_id,
+            manager_account,
+            manager_pwd,
+            manager_authority
+        ) VALUES (
+            #{manager.managerId,jdbcType=INTEGER},
+            #{manager.managerAccount,jdbcType=VARCHAR},
+            #{manager.managerPwd,jdbcType=VARCHAR},
+            #{manager.managerAuthority,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="manager.managerId">
+        INSERT INTO manager
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="manager.managerId!=null"> manager_id,</if>
+            <if test="manager.managerAccount!=null"> manager_account,</if>
+            <if test="manager.managerPwd!=null"> manager_pwd,</if>
+            <if test="manager.managerAuthority!=null"> manager_authority,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="manager.managerId!=null">#{manager.managerId,jdbcType=INTEGER},
+            </if>
+            <if test="manager.managerAccount!=null">#{manager.managerAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="manager.managerPwd!=null">#{manager.managerPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="manager.managerAuthority!=null">#{manager.managerAuthority,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO manager (
+        <include refid="Base_Column_List"/>
+        )VALUES
+        <foreach collection="managers" item="manager" index="index" separator=",">
+            (
+            #{manager.managerId,jdbcType=INTEGER},
+            #{manager.managerAccount,jdbcType=VARCHAR},
+            #{manager.managerPwd,jdbcType=VARCHAR},
+            #{manager.managerAuthority,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE manager
+        <set>
+            <if test="manager.managerId != null"> manager_id= #{manager.managerId,jdbcType=INTEGER},</if>
+            <if test="manager.managerAccount != null"> manager_account= #{manager.managerAccount,jdbcType=VARCHAR},</if>
+            <if test="manager.managerPwd != null"> manager_pwd= #{manager.managerPwd,jdbcType=VARCHAR},</if>
+            <if test="manager.managerAuthority != null"> manager_authority= #{manager.managerAuthority,jdbcType=VARCHAR}</if>
+        </set>
+        WHERE manager_id = #{manager.managerId,jdbcType=INTEGER}
+    </update>
+</mapper>
+
