@@ -24,4 +24,5 @@ public class Order {
     private Date orderStart;
     private Date orderFinish;
     private Date orderCreate;
+    private Integer deleted;
 }

@@ -20,4 +20,5 @@ public class SeatLocation {
     private String seatStorey;
     private String seatRoom;
     private String seatNumber;
+    private Integer deleted;
 }

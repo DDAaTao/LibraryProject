@@ -5,24 +5,28 @@
     <resultMap id="BaseResultMap" type="com.library.LibraryProject.entity.SeatStatus">
         <result column="seat_id" property="seatId" jdbcType="VARCHAR"/>
         <result column="seat_user_time" property="seatUserTime" jdbcType="VARCHAR"/>
+        <result column="deleted" property="deleted" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--auto generated Code-->
     <sql id="Base_Column_List">
         seat_id,
-        seat_user_time
+        seat_user_time,
+        deleted
     </sql>
 
     <!--auto generated Code-->
     <insert id="insert" useGeneratedKeys="true" keyProperty="seatStatus.seatId">
         INSERT INTO seat_status (
             seat_id,
-            seat_user_time
+            seat_user_time,
+            deleted
         ) VALUES (
             #{seatStatus.seatId,jdbcType=VARCHAR},
-            #{seatStatus.seatUserTime,jdbcType=VARCHAR}
+            #{seatStatus.seatUserTime,jdbcType=VARCHAR},
+            #{seatStatus.deleted,jdbcType=INTEGER}
         )
-    </insert>
+</insert>
 
     <!--auto generated Code-->
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="seatStatus.seatId">
@@ -30,37 +34,38 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="seatStatus.seatId!=null"> seat_id,</if>
             <if test="seatStatus.seatUserTime!=null"> seat_user_time,</if>
+            <if test="seatStatus.deleted!=null"> deleted</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="seatStatus.seatId!=null">#{seatStatus.seatId,jdbcType=VARCHAR},
-            </if>
-            <if test="seatStatus.seatUserTime!=null">#{seatStatus.seatUserTime,jdbcType=VARCHAR},
-            </if>
+            <if test="seatStatus.seatId!=null"> #{seatStatus.seatId,jdbcType=VARCHAR},</if>
+            <if test="seatStatus.seatUserTime!=null"> #{seatStatus.seatUserTime,jdbcType=VARCHAR},</if>
+            <if test="seatStatus.deleted!=null"> #{seatStatus.deleted,jdbcType=INTEGER}</if>
         </trim>
-    </insert>
+</insert>
 
     <!--auto generated Code-->
-    <insert id="insertList">
-        INSERT INTO seat_status (
+    <insert id="insertList">        INSERT INTO seat_status(
         <include refid="Base_Column_List"/>
         )VALUES
         <foreach collection="seatStatuss" item="seatStatus" index="index" separator=",">
             (
             #{seatStatus.seatId,jdbcType=VARCHAR},
-            #{seatStatus.seatUserTime,jdbcType=VARCHAR}
+            #{seatStatus.seatUserTime,jdbcType=VARCHAR},
+            #{seatStatus.deleted,jdbcType=INTEGER}
             )
         </foreach>
-    </insert>
+</insert>
 
     <!--auto generated Code-->
     <update id="update">
         UPDATE seat_status
         <set>
-            <if test="seatStatus.seatId != null"> seat_id= #{seatStatus.seatId,jdbcType=VARCHAR},</if>
-            <if test="seatStatus.seatUserTime != null"> seat_user_time= #{seatStatus.seatUserTime,jdbcType=VARCHAR}</if>
+                <if test="seatStatus.seatId != null"> seat_id = #{seatStatus.seatId,jdbcType=VARCHAR},</if>
+                <if test="seatStatus.seatUserTime != null"> seat_user_time = #{seatStatus.seatUserTime,jdbcType=VARCHAR},</if>
+                <if test="seatStatus.deleted != null"> deleted = #{seatStatus.deleted,jdbcType=INTEGER}</if>
         </set>
-        WHERE seat_id = #{seatStatus.seatId,jdbcType=VARCHAR}
+		WHERE seat_id = #{seatStatus.seatId,jdbcType=VARCHAR}
     </update>
 </mapper>
 

@@ -8,6 +8,7 @@
         <result column="seat_storey" property="seatStorey" jdbcType="VARCHAR"/>
         <result column="seat_room" property="seatRoom" jdbcType="VARCHAR"/>
         <result column="seat_number" property="seatNumber" jdbcType="VARCHAR"/>
+        <result column="deleted" property="deleted" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--auto generated Code-->
@@ -16,7 +17,8 @@
         seat_area,
         seat_storey,
         seat_room,
-        seat_number
+        seat_number,
+        deleted
     </sql>
 
     <!--auto generated Code-->
@@ -26,15 +28,17 @@
             seat_area,
             seat_storey,
             seat_room,
-            seat_number
+            seat_number,
+            deleted
         ) VALUES (
             #{seatLocation.seatId,jdbcType=VARCHAR},
             #{seatLocation.seatArea,jdbcType=VARCHAR},
             #{seatLocation.seatStorey,jdbcType=VARCHAR},
             #{seatLocation.seatRoom,jdbcType=VARCHAR},
-            #{seatLocation.seatNumber,jdbcType=VARCHAR}
+            #{seatLocation.seatNumber,jdbcType=VARCHAR},
+            #{seatLocation.deleted,jdbcType=INTEGER}
         )
-    </insert>
+</insert>
 
     <!--auto generated Code-->
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="seatLocation.seatId">
@@ -45,25 +49,21 @@
             <if test="seatLocation.seatStorey!=null"> seat_storey,</if>
             <if test="seatLocation.seatRoom!=null"> seat_room,</if>
             <if test="seatLocation.seatNumber!=null"> seat_number,</if>
+            <if test="seatLocation.deleted!=null"> deleted</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="seatLocation.seatId!=null">#{seatLocation.seatId,jdbcType=VARCHAR},
-            </if>
-            <if test="seatLocation.seatArea!=null">#{seatLocation.seatArea,jdbcType=VARCHAR},
-            </if>
-            <if test="seatLocation.seatStorey!=null">#{seatLocation.seatStorey,jdbcType=VARCHAR},
-            </if>
-            <if test="seatLocation.seatRoom!=null">#{seatLocation.seatRoom,jdbcType=VARCHAR},
-            </if>
-            <if test="seatLocation.seatNumber!=null">#{seatLocation.seatNumber,jdbcType=VARCHAR},
-            </if>
+            <if test="seatLocation.seatId!=null"> #{seatLocation.seatId,jdbcType=VARCHAR},</if>
+            <if test="seatLocation.seatArea!=null"> #{seatLocation.seatArea,jdbcType=VARCHAR},</if>
+            <if test="seatLocation.seatStorey!=null"> #{seatLocation.seatStorey,jdbcType=VARCHAR},</if>
+            <if test="seatLocation.seatRoom!=null"> #{seatLocation.seatRoom,jdbcType=VARCHAR},</if>
+            <if test="seatLocation.seatNumber!=null"> #{seatLocation.seatNumber,jdbcType=VARCHAR},</if>
+            <if test="seatLocation.deleted!=null"> #{seatLocation.deleted,jdbcType=INTEGER}</if>
         </trim>
-    </insert>
+</insert>
 
     <!--auto generated Code-->
-    <insert id="insertList">
-        INSERT INTO seat_location (
+    <insert id="insertList">        INSERT INTO seat_location(
         <include refid="Base_Column_List"/>
         )VALUES
         <foreach collection="seatLocations" item="seatLocation" index="index" separator=",">
@@ -72,22 +72,24 @@
             #{seatLocation.seatArea,jdbcType=VARCHAR},
             #{seatLocation.seatStorey,jdbcType=VARCHAR},
             #{seatLocation.seatRoom,jdbcType=VARCHAR},
-            #{seatLocation.seatNumber,jdbcType=VARCHAR}
+            #{seatLocation.seatNumber,jdbcType=VARCHAR},
+            #{seatLocation.deleted,jdbcType=INTEGER}
             )
         </foreach>
-    </insert>
+</insert>
 
     <!--auto generated Code-->
     <update id="update">
         UPDATE seat_location
         <set>
-            <if test="seatLocation.seatId != null"> seat_id= #{seatLocation.seatId,jdbcType=VARCHAR},</if>
-            <if test="seatLocation.seatArea != null"> seat_area= #{seatLocation.seatArea,jdbcType=VARCHAR},</if>
-            <if test="seatLocation.seatStorey != null"> seat_storey= #{seatLocation.seatStorey,jdbcType=VARCHAR},</if>
-            <if test="seatLocation.seatRoom != null"> seat_room= #{seatLocation.seatRoom,jdbcType=VARCHAR},</if>
-            <if test="seatLocation.seatNumber != null"> seat_number= #{seatLocation.seatNumber,jdbcType=VARCHAR}</if>
+                <if test="seatLocation.seatId != null"> seat_id = #{seatLocation.seatId,jdbcType=VARCHAR},</if>
+                <if test="seatLocation.seatArea != null"> seat_area = #{seatLocation.seatArea,jdbcType=VARCHAR},</if>
+                <if test="seatLocation.seatStorey != null"> seat_storey = #{seatLocation.seatStorey,jdbcType=VARCHAR},</if>
+                <if test="seatLocation.seatRoom != null"> seat_room = #{seatLocation.seatRoom,jdbcType=VARCHAR},</if>
+                <if test="seatLocation.seatNumber != null"> seat_number = #{seatLocation.seatNumber,jdbcType=VARCHAR},</if>
+                <if test="seatLocation.deleted != null"> deleted = #{seatLocation.deleted,jdbcType=INTEGER}</if>
         </set>
-        WHERE seat_id = #{seatLocation.seatId,jdbcType=VARCHAR}
+		WHERE seat_id = #{seatLocation.seatId,jdbcType=VARCHAR}
     </update>
 </mapper>
 

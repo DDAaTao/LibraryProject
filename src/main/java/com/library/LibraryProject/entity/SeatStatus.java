@@ -18,4 +18,5 @@ import lombok.NoArgsConstructor;
 public class SeatStatus {
     private String seatId;
     private String seatUserTime;
+    private Integer deleted;
 }
