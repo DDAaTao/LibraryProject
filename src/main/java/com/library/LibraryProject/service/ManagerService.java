@@ -11,4 +11,8 @@ public interface ManagerService{
     int insertList(List<Manager> managers);
 
     int update(Manager manager);
+
+    public List<Manager> searchAll();
+
+    public Manager searchByAccountAndPwd(String managerAccount, String managerPwd);
 }

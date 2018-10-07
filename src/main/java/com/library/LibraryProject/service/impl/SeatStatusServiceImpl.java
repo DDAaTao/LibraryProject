@@ -1,16 +1,19 @@
 package com.library.LibraryProject.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 import com.library.LibraryProject.entity.SeatStatus;
 import com.library.LibraryProject.dao.SeatStatusDao;
 import com.library.LibraryProject.service.SeatStatusService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class SeatStatusServiceImpl implements SeatStatusService{
 
-    @Resource
+    @Autowired
     private SeatStatusDao seatStatusDao;
 
     @Override

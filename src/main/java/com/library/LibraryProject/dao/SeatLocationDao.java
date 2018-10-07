@@ -5,7 +5,9 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import com.library.LibraryProject.entity.SeatLocation;
+import org.springframework.stereotype.Repository;
 
+@Repository
 @Mapper
 public interface SeatLocationDao {
     int insert(@Param("seatLocation") SeatLocation seatLocation);

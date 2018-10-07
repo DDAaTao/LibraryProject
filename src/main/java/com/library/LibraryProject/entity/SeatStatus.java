@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 
 /**
  * @author 文涛
@@ -17,6 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SeatStatus {
     private String seatId;
-    private String seatUserTime;
+    private Date seat_start;
+    private Date seat_finish;
     private Integer deleted;
 }

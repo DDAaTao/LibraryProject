@@ -5,7 +5,9 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import com.library.LibraryProject.entity.Order;
+import org.springframework.stereotype.Repository;
 
+@Repository
 @Mapper
 public interface OrderDao {
     int insert(@Param("order") Order order);
