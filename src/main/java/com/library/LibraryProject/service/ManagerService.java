@@ -12,7 +12,11 @@ public interface ManagerService{
 
     int update(Manager manager);
 
-    public List<Manager> searchAll();
+    List<Manager> searchAll();
 
-    public Manager searchByAccountAndPwd(String managerAccount, String managerPwd);
+    Manager searchByAccountAndPwd(String managerAccount, String managerPwd);
+
+    int dropByAccount(String managerAccount);
+
+    int registerManager(Manager manager);
 }

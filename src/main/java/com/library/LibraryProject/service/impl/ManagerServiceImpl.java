@@ -1,5 +1,6 @@
 package com.library.LibraryProject.service.impl;
 
+import com.library.LibraryProject.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -44,5 +45,19 @@ public class ManagerServiceImpl implements ManagerService{
     @Override
     public Manager searchByAccountAndPwd(String managerAccount, String managerPwd) {
         return managerDao.findByManagerAccountAndManagerPwd(managerAccount, managerPwd);
+    }
+
+    @Override
+    public int dropByAccount(String managerAccount) {
+        return managerDao.deleteByManagerAccount(managerAccount);
+    }
+
+    @Override
+    public int registerManager(Manager manager) {
+        if (StringUtil.isNullOrEmpty(manager.getManagerAccount())
+                || StringUtil.isNullOrEmpty(manager.getManagerPwd())){
+            throw new RuntimeException("传入的账号或密码为空");
+        }
+        return managerDao.insert(manager);
     }
 }

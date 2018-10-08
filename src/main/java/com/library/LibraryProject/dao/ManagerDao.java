@@ -22,5 +22,6 @@ public interface ManagerDao {
 
     Manager findByManagerAccountAndManagerPwd(@Param("managerAccount")String managerAccount,@Param("managerPwd")String managerPwd);
 
+    int deleteByManagerAccount(@Param("managerAccount")String managerAccount);
 
 }
