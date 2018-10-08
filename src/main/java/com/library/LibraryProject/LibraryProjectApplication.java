@@ -7,7 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
+/**
+ * @author 文涛
+ * */
 
 @SpringBootApplication
 @MapperScan("com.library.LibraryProject.dao")
