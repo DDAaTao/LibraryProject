@@ -4,6 +4,7 @@ import com.library.LibraryProject.common.AjaxResult;
 import com.library.LibraryProject.common.ResultCode;
 import com.library.LibraryProject.entity.Manager;
 import com.library.LibraryProject.service.ManagerService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import java.util.List;
  * @date 2018年10月7日16:07:37
  * */
 
+@Slf4j
 @Controller
 @RequestMapping("/manager")
 public class ManagerController {
@@ -36,7 +38,7 @@ public class ManagerController {
                     loginManager.getManagerAccount(), loginManager.getManagerPwd());
             return AjaxResult.success(manager);
         }catch (Exception e){
-            e.printStackTrace();
+            log.error("Manager登录失败",e);
             return AjaxResult.fail(ResultCode.FAIL.getCode(),"Manager登录失败");
         }
     }
@@ -56,7 +58,7 @@ public class ManagerController {
             }
             return AjaxResult.success();
         }catch (Exception e){
-            e.printStackTrace();
+            log.error("Manager注册失败",e);
             return AjaxResult.fail(ResultCode.FAIL.getCode(),"Manager注册失败");
         }
     }
@@ -70,7 +72,7 @@ public class ManagerController {
         try {
             return AjaxResult.success(managerService.searchAll());
         }catch (Exception e){
-            e.printStackTrace();
+            log.error("查询所有Manager失败",e);
             // 为了防止恶意调用接口测试接口返回信息，特将返回于前端的错误提示进行模糊化修改
             return AjaxResult.fail(ResultCode.FAIL.getCode(),"获取失败");
         }
@@ -90,7 +92,7 @@ public class ManagerController {
             }
             return AjaxResult.success();
         }catch (Exception e){
-            e.printStackTrace();
+            log.error(ResultCode.DROP_MANAGER_FAIL.getMsg(),e);
             return AjaxResult.fail(ResultCode.DROP_MANAGER_FAIL.getCode(),ResultCode.DROP_MANAGER_FAIL.getMsg());
         }
     }
