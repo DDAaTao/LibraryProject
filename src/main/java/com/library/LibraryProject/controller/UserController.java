@@ -1,6 +1,7 @@
 package com.library.LibraryProject.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author 文涛
@@ -8,5 +9,8 @@ import org.springframework.stereotype.Controller;
  * */
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
+
+
 }

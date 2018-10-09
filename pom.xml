@@ -82,6 +82,12 @@
 			<groupId>org.xmlunit</groupId>
 			<artifactId>xmlunit-core</artifactId>
 		</dependency>
+		<!-- 工具包 -->
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
 	</dependencies>
 
 	<build>
