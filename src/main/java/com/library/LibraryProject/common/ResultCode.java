@@ -16,6 +16,11 @@ public enum ResultCode {
      * drop manager fail
      * */
     DROP_MANAGER_FAIL("drop.manager.fail","删除管理员失败"),
+
+    /**
+     * download all user fail
+     * */
+    DOWNLOAD_FAIL("download.fail","下载失败"),
     /**
      * result fail
      * */

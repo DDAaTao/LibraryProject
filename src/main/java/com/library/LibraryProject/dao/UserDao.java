@@ -20,6 +20,9 @@ public interface UserDao {
 
     int update(@Param("user") User user);
 
-    List<User> findByUserId(@Param("userId")Integer userId);
+    User findByUserId(@Param("userId")Integer userId);
+
+    List<User> find();
+
 
 }

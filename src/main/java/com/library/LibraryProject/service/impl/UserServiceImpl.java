@@ -35,4 +35,14 @@ public class UserServiceImpl implements UserService{
     public int update(User user){
         return userDao.update(user);
     }
+
+    @Override
+    public User queryByUserId(Integer userId) {
+        return userDao.findByUserId(userId);
+    }
+
+    @Override
+    public List<User> queryAll() {
+        return userDao.find();
+    }
 }
