@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -33,6 +34,18 @@ public class UserController {
         } catch (IOException e) {
             log.error("下载失败", e);
             return AjaxResult.fail(ResultCode.DOWNLOAD_FAIL.getCode(), "下载所有用户表失败");
+        }
+        return AjaxResult.success();
+    }
+
+    @RequestMapping("importExcel")
+    @ResponseBody
+    public AjaxResult importExcel(MultipartFile userExcel){
+        try {
+            userManager.importUsers(userExcel);
+        }catch (Exception e){
+            log.error("上传失败", e);
+            return AjaxResult.fail(ResultCode.UPLOAD_FAIL.getCode(), "上传所有用户失败");
         }
         return AjaxResult.success();
     }

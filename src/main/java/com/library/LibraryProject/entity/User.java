@@ -28,6 +28,7 @@ public class User {
     private String userPassword;
     @Excel(name = "性别")
     private String userSex;
+    @Excel(name = "学院")
     private String userAcademy;
     private String userProfession;
     private String userViolation;

@@ -1,7 +1,8 @@
 package com.library.LibraryProject.manager;
 
 
-import com.sun.deploy.net.HttpResponse;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -16,4 +17,6 @@ public interface UserManager {
      * 下载所有的用户信息
      * */
     void allUsersDownload(HttpServletResponse httpServletResponse) throws IOException;
+
+    void importUsers(MultipartFile multipartFile) throws IOException;
 }

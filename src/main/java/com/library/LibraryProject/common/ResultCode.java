@@ -1,7 +1,6 @@
 package com.library.LibraryProject.common;
 
 
-import javax.security.auth.login.FailedLoginException;
 
 /**
  * @author 文涛
@@ -10,21 +9,27 @@ public enum ResultCode {
     /**
      * result success
      * */
-    SUCCESS("200","success"),
+    SUCCESS("200", "success"),
 
     /**
      * drop manager fail
      * */
-    DROP_MANAGER_FAIL("drop.manager.fail","删除管理员失败"),
+    DROP_MANAGER_FAIL("drop.manager.fail", "删除管理员失败"),
 
     /**
-     * download all user fail
+     * every fail download fail
      * */
-    DOWNLOAD_FAIL("download.fail","下载失败"),
+    DOWNLOAD_FAIL("download.fail", "下载失败"),
+
+    /**
+     * every fail upload fail
+     * */
+    UPLOAD_FAIL("upload.fail", "上传失败"),
+
     /**
      * result fail
      * */
-    FAIL("500","fail");
+    FAIL("500", "fail");
 
     private String code;
     private String msg;
