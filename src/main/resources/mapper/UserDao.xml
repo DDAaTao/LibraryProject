@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.library.LibraryProject.dao.UserDao">
+<mapper namespace="com.library.libraryproject.dao.UserDao">
     <!--auto generated Code-->
-    <resultMap id="BaseResultMap" type="com.library.LibraryProject.entity.User">
+    <resultMap id="BaseResultMap" type="com.library.libraryproject.entity.User">
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="user_number" property="userNumber" jdbcType="VARCHAR"/>

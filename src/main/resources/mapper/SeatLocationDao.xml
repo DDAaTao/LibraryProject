@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.library.LibraryProject.dao.SeatLocationDao">
+<mapper namespace="com.library.libraryproject.dao.SeatLocationDao">
     <!--auto generated Code-->
-    <resultMap id="BaseResultMap" type="com.library.LibraryProject.entity.SeatLocation">
+    <resultMap id="BaseResultMap" type="com.library.libraryproject.entity.SeatLocation">
         <result column="seat_id" property="seatId" jdbcType="VARCHAR"/>
         <result column="seat_area" property="seatArea" jdbcType="VARCHAR"/>
         <result column="seat_storey" property="seatStorey" jdbcType="VARCHAR"/>

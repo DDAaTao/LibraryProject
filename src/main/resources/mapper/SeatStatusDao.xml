@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.library.LibraryProject.dao.SeatStatusDao">
+<mapper namespace="com.library.libraryproject.dao.SeatStatusDao">
     <!--auto generated Code-->
-    <resultMap id="BaseResultMap" type="com.library.LibraryProject.entity.SeatStatus">
+    <resultMap id="BaseResultMap" type="com.library.libraryproject.entity.SeatStatus">
         <result column="seat_id" property="seatId" jdbcType="VARCHAR"/>
         <result column="deleted" property="deleted" jdbcType="INTEGER"/>
         <result column="seat_start" property="seatStart" jdbcType="TIMESTAMP"/>
