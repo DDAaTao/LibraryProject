@@ -19,7 +19,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class SeatStatus {
     private String seatId;
-    private Date seat_start;
-    private Date seat_finish;
+    private Date seatStart;
+    private Date seatFinish;
     private Integer deleted;
 }

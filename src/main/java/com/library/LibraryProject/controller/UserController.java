@@ -2,7 +2,9 @@ package com.library.LibraryProject.controller;
 
 import com.library.LibraryProject.common.AjaxResult;
 import com.library.LibraryProject.common.ResultCode;
+import com.library.LibraryProject.entity.User;
 import com.library.LibraryProject.manager.UserManager;
+import com.library.LibraryProject.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,9 @@ public class UserController {
     @Autowired
     private UserManager userManager;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("/allUserDownload")
     @ResponseBody
     public AjaxResult allUserDownload(HttpServletResponse httpServletResponse){
@@ -38,7 +43,7 @@ public class UserController {
         return AjaxResult.success();
     }
 
-    @RequestMapping("importExcel")
+    @RequestMapping("/importExcel")
     @ResponseBody
     public AjaxResult importExcel(MultipartFile userExcel){
         try {
@@ -46,6 +51,19 @@ public class UserController {
         }catch (Exception e){
             log.error("上传失败", e);
             return AjaxResult.fail(ResultCode.UPLOAD_FAIL.getCode(), "上传所有用户失败");
+        }
+        return AjaxResult.success();
+    }
+
+    @RequestMapping("/deleteUser")
+    @ResponseBody
+    public AjaxResult deleteUser(Integer userId){
+        try {
+            if (userService.dropUserById(userId) < 0){
+                return AjaxResult.fail(ResultCode.DROP_FAIL.getCode(), "删除用户失败");
+            }
+        }catch (Exception e){
+            return AjaxResult.fail(ResultCode.DROP_FAIL.getCode(), "删除用户失败");
         }
         return AjaxResult.success();
     }

@@ -5,8 +5,8 @@
     <resultMap id="BaseResultMap" type="com.library.LibraryProject.entity.SeatStatus">
         <result column="seat_id" property="seatId" jdbcType="VARCHAR"/>
         <result column="deleted" property="deleted" jdbcType="INTEGER"/>
-        <result column="seat_start" property="seat_start" jdbcType="TIMESTAMP"/>
-        <result column="seat_finish" property="seat_finish" jdbcType="TIMESTAMP"/>
+        <result column="seat_start" property="seatStart" jdbcType="TIMESTAMP"/>
+        <result column="seat_finish" property="seatFinish" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <!--auto generated Code-->
@@ -21,12 +21,14 @@
     <insert id="insert" useGeneratedKeys="true" keyProperty="seatStatus.seatId">
         INSERT INTO seat_status (
             seat_id,
+            deleted,
             seat_start,
             seat_finish
         ) VALUES (
             #{seatStatus.seatId,jdbcType=VARCHAR},
-            #{seatStatus.seat_start,jdbcType=TIMESTAMP},
-            #{seatStatus.seat_finish,jdbcType=TIMESTAMP}
+            #{seatStatus.deleted,jdbcType=INTEGER},
+            #{seatStatus.seatStart,jdbcType=TIMESTAMP},
+            #{seatStatus.seatFinish,jdbcType=TIMESTAMP}
         )
 </insert>
 
@@ -35,14 +37,16 @@
         INSERT INTO seat_status
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="seatStatus.seatId!=null"> seat_id,</if>
-            <if test="seatStatus.seat_start!=null"> seat_start,</if>
-            <if test="seatStatus.seat_finish!=null"> seat_finish</if>
+            <if test="seatStatus.deleted!=null"> deleted,</if>
+            <if test="seatStatus.seatStart!=null"> seat_start,</if>
+            <if test="seatStatus.seatFinish!=null"> seat_finish</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="seatStatus.seatId!=null"> #{seatStatus.seatId,jdbcType=VARCHAR},</if>
-            <if test="seatStatus.seat_start!=null"> #{seatStatus.seat_start,jdbcType=TIMESTAMP},</if>
-            <if test="seatStatus.seat_finish!=null"> #{seatStatus.seat_finish,jdbcType=TIMESTAMP}</if>
+            <if test="seatStatus.deleted!=null"> #{seatStatus.deleted,jdbcType=INTEGER},</if>
+            <if test="seatStatus.seatStart!=null"> #{seatStatus.seatStart,jdbcType=TIMESTAMP},</if>
+            <if test="seatStatus.seatFinish!=null"> #{seatStatus.seatFinish,jdbcType=TIMESTAMP}</if>
         </trim>
 </insert>
 
@@ -53,8 +57,9 @@
         <foreach collection="seatStatuss" item="seatStatus" index="index" separator=",">
             (
             #{seatStatus.seatId,jdbcType=VARCHAR},
-            #{seatStatus.seat_start,jdbcType=TIMESTAMP},
-            #{seatStatus.seat_finish,jdbcType=TIMESTAMP}
+            #{seatStatus.deleted,jdbcType=INTEGER},
+            #{seatStatus.seatStart,jdbcType=TIMESTAMP},
+            #{seatStatus.seatFinish,jdbcType=TIMESTAMP}
             )
         </foreach>
 </insert>
@@ -64,8 +69,9 @@
         UPDATE seat_status
         <set>
                 <if test="seatStatus.seatId != null"> seat_id = #{seatStatus.seatId,jdbcType=VARCHAR},</if>
-                <if test="seatStatus.seat_start != null"> seat_start = #{seatStatus.seat_start,jdbcType=TIMESTAMP},</if>
-                <if test="seatStatus.seat_finish != null"> seat_finish = #{seatStatus.seat_finish,jdbcType=TIMESTAMP}</if>
+                <if test="seatStatus.deleted != null"> deleted = #{seatStatus.deleted,jdbcType=INTEGER},</if>
+                <if test="seatStatus.seatStart != null"> seat_start = #{seatStatus.seatStart,jdbcType=TIMESTAMP},</if>
+                <if test="seatStatus.seatFinish != null"> seat_finish = #{seatStatus.seatFinish,jdbcType=TIMESTAMP}</if>
         </set>
 		WHERE seat_id = #{seatStatus.seatId,jdbcType=VARCHAR}
     </update>

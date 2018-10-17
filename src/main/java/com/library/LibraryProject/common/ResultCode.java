@@ -12,6 +12,11 @@ public enum ResultCode {
     SUCCESS("200", "success"),
 
     /**
+     * drop something fail
+     * */
+    DROP_FAIL("drop.fail", "删除操作失败"),
+
+    /**
      * drop manager fail
      * */
     DROP_MANAGER_FAIL("drop.manager.fail", "删除管理员失败"),

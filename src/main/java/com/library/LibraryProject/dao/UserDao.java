@@ -24,5 +24,7 @@ public interface UserDao {
 
     List<User> find();
 
+    int deleteByUserId(@Param("userId")Integer userId);
+
 
 }

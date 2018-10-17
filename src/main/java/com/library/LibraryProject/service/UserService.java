@@ -22,4 +22,6 @@ public interface UserService{
      * select all user
      * */
     List<User> queryAll();
+
+    int dropUserById(Integer userId);
 }

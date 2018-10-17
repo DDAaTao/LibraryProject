@@ -44,4 +44,9 @@ public class UserServiceImpl implements UserService{
     public List<User> queryAll() {
         return userDao.find();
     }
+
+    @Override
+    public int dropUserById(Integer userId) {
+        return userDao.deleteByUserId(userId);
+    }
 }
