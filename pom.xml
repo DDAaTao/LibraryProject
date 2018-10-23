@@ -27,6 +27,13 @@
 	</properties>
 
 	<dependencies>
+		<!-- 引入Caffeine本地缓存技术 -->
+		<dependency>
+			<groupId>com.github.ben-manes.caffeine</groupId>
+			<artifactId>caffeine</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+
 		<!-- FastJson -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
