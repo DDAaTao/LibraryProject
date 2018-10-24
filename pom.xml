@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.library</groupId>
-	<artifactId>LibraryProject</artifactId>
+	<artifactId>libraryproject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>LibraryProject</name>
+	<name>libraryproject</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -28,6 +28,10 @@
 
 	<dependencies>
 		<!-- 引入Caffeine本地缓存技术 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.github.ben-manes.caffeine</groupId>
 			<artifactId>caffeine</artifactId>
