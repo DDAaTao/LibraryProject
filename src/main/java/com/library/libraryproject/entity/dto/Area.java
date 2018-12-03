@@ -7,11 +7,16 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * @author 文涛
+ * @since 2018年11月29日23:46:08
+ * */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Area {
     private String name;
-    private List<Buliding> bulidings;
+    private String id;
+    private List<Building> buildings;
 }

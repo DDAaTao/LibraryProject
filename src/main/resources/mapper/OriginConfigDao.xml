@@ -9,6 +9,7 @@
         <result column="config_name" property="configName" jdbcType="VARCHAR"/>
         <result column="config_body" property="configBody" jdbcType="VARCHAR"/>
         <result column="delete" property="delete" jdbcType="INTEGER"/>
+        <result column="area_id" property="areaId" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--auto generated Code-->
@@ -18,7 +19,8 @@
         update_time,
         config_name,
         config_body,
-        delete
+        delete,
+        area_id
     </sql>
 
     <!--auto generated Code-->
@@ -29,16 +31,18 @@
             update_time,
             config_name,
             config_body,
-            delete
+            delete,
+            area_id
         ) VALUES (
             #{originConfig.id,jdbcType=INTEGER},
             #{originConfig.createTime,jdbcType=TIMESTAMP},
             #{originConfig.updateTime,jdbcType=TIMESTAMP},
             #{originConfig.configName,jdbcType=VARCHAR},
             #{originConfig.configBody,jdbcType=VARCHAR},
-            #{originConfig.delete,jdbcType=INTEGER}
+            #{originConfig.delete,jdbcType=INTEGER},
+            #{originConfig.areaId,jdbcType=VARCHAR}
         )
-    </insert>
+</insert>
 
     <!--auto generated Code-->
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="originConfig.id">
@@ -50,27 +54,22 @@
             <if test="originConfig.configName!=null"> config_name,</if>
             <if test="originConfig.configBody!=null"> config_body,</if>
             <if test="originConfig.delete!=null"> delete,</if>
+            <if test="originConfig.areaId!=null"> area_id</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="originConfig.id!=null">#{originConfig.id,jdbcType=INTEGER},
-            </if>
-            <if test="originConfig.createTime!=null">#{originConfig.createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="originConfig.updateTime!=null">#{originConfig.updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="originConfig.configName!=null">#{originConfig.configName,jdbcType=VARCHAR},
-            </if>
-            <if test="originConfig.configBody!=null">#{originConfig.configBody,jdbcType=VARCHAR},
-            </if>
-            <if test="originConfig.delete!=null">#{originConfig.delete,jdbcType=INTEGER},
-            </if>
+            <if test="originConfig.id!=null"> #{originConfig.id,jdbcType=INTEGER},</if>
+            <if test="originConfig.createTime!=null"> #{originConfig.createTime,jdbcType=TIMESTAMP},</if>
+            <if test="originConfig.updateTime!=null"> #{originConfig.updateTime,jdbcType=TIMESTAMP},</if>
+            <if test="originConfig.configName!=null"> #{originConfig.configName,jdbcType=VARCHAR},</if>
+            <if test="originConfig.configBody!=null"> #{originConfig.configBody,jdbcType=VARCHAR},</if>
+            <if test="originConfig.delete!=null"> #{originConfig.delete,jdbcType=INTEGER},</if>
+            <if test="originConfig.areaId!=null"> #{originConfig.areaId,jdbcType=VARCHAR}</if>
         </trim>
-    </insert>
+</insert>
 
     <!--auto generated Code-->
-    <insert id="insertList">
-        INSERT INTO origin_config (
+    <insert id="insertList">        INSERT INTO origin_config(
         <include refid="Base_Column_List"/>
         )VALUES
         <foreach collection="originConfigs" item="originConfig" index="index" separator=",">
@@ -80,23 +79,25 @@
             #{originConfig.updateTime,jdbcType=TIMESTAMP},
             #{originConfig.configName,jdbcType=VARCHAR},
             #{originConfig.configBody,jdbcType=VARCHAR},
-            #{originConfig.delete,jdbcType=INTEGER}
+            #{originConfig.delete,jdbcType=INTEGER},
+            #{originConfig.areaId,jdbcType=VARCHAR}
             )
         </foreach>
-    </insert>
+</insert>
 
     <!--auto generated Code-->
     <update id="update">
         UPDATE origin_config
         <set>
-            <if test="originConfig.id != null"> id= #{originConfig.id,jdbcType=INTEGER},</if>
-            <if test="originConfig.createTime != null"> create_time= #{originConfig.createTime,jdbcType=TIMESTAMP},</if>
-            <if test="originConfig.updateTime != null"> update_time= #{originConfig.updateTime,jdbcType=TIMESTAMP},</if>
-            <if test="originConfig.configName != null"> config_name= #{originConfig.configName,jdbcType=VARCHAR},</if>
-            <if test="originConfig.configBody != null"> config_body= #{originConfig.configBody,jdbcType=VARCHAR},</if>
-            <if test="originConfig.delete != null"> delete= #{originConfig.delete,jdbcType=INTEGER}</if>
+                <if test="originConfig.id != null"> id = #{originConfig.id,jdbcType=INTEGER},</if>
+                <if test="originConfig.createTime != null"> create_time = #{originConfig.createTime,jdbcType=TIMESTAMP},</if>
+                <if test="originConfig.updateTime != null"> update_time = #{originConfig.updateTime,jdbcType=TIMESTAMP},</if>
+                <if test="originConfig.configName != null"> config_name = #{originConfig.configName,jdbcType=VARCHAR},</if>
+                <if test="originConfig.configBody != null"> config_body = #{originConfig.configBody,jdbcType=VARCHAR},</if>
+                <if test="originConfig.delete != null"> delete = #{originConfig.delete,jdbcType=INTEGER},</if>
+                <if test="originConfig.areaId != null"> area_id = #{originConfig.areaId,jdbcType=VARCHAR}</if>
         </set>
-        WHERE id = #{originConfig.id,jdbcType=INTEGER}
+		WHERE id = #{originConfig.id,jdbcType=INTEGER}
     </update>
 
 <!--auto generated by codehelper on 2018-10-23 22:56:20-->

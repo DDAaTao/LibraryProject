@@ -22,5 +22,6 @@ public class OriginConfig {
     private Date updateTime;
     private String configName;
     private String configBody;
+    private String areaId;
     private Integer delete;
 }

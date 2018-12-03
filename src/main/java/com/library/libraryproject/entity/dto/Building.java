@@ -16,7 +16,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Buliding {
+public class Building {
     private String name;
+    private String id;
     private List<Storey> storeys;
 }
