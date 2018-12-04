@@ -12,10 +12,10 @@ import org.springframework.cache.annotation.EnableCaching;
  * @author 文涛
  * */
 
-@SpringBootApplication
+
 @MapperScan("com.library.libraryproject.dao")
-@EnableAutoConfiguration(exclude={DruidDataSourceAutoConfigure.class})
 @EnableCaching
+@SpringBootApplication(exclude={DruidDataSourceAutoConfigure.class})
 public class LibraryProjectApplication {
 
     public static void main(String[] args) {
