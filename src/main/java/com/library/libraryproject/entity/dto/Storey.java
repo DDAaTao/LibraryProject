@@ -18,5 +18,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Storey {
     private String name;
+    private String id;
     private List<String> rooms;
 }
