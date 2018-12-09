@@ -69,7 +69,6 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.0</version>
-			<scope>provided</scope>
 		</dependency>
 		<!-- easypoi工具包 -->
 		<dependency>
@@ -128,7 +127,7 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
+				<!--<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.6.2</version>
 				<configuration>
@@ -139,9 +138,9 @@
 						<version>${lombok.version}</version>
 					</path>**
 					</annotationProcessorPaths>
-				</configuration>
-			<!--	<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>-->
+				</configuration>-->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
