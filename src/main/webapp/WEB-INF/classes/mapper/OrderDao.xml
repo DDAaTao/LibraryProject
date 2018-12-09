@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.library.libraryproject.dao.OrderDao">
+    <!--auto generated Code-->
+    <resultMap id="BaseResultMap" type="com.library.libraryproject.entity.Order">
+        <result column="order_id" property="orderId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="seat_status" property="seatStatus" jdbcType="VARCHAR"/>
+        <result column="order_status" property="orderStatus" jdbcType="VARCHAR"/>
+        <result column="order_start" property="orderStart" jdbcType="TIMESTAMP"/>
+        <result column="order_finish" property="orderFinish" jdbcType="TIMESTAMP"/>
+        <result column="order_create" property="orderCreate" jdbcType="TIMESTAMP"/>
+        <result column="deleted" property="deleted" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="Base_Column_List">
+        order_id,
+        user_id,
+        seat_status,
+        order_status,
+        order_start,
+        order_finish,
+        order_create,
+        deleted
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="order.orderId">
+        INSERT INTO order (
+            order_id,
+            user_id,
+            seat_status,
+            order_status,
+            order_start,
+            order_finish,
+            order_create,
+            deleted
+        ) VALUES (
+            #{order.orderId,jdbcType=INTEGER},
+            #{order.userId,jdbcType=INTEGER},
+            #{order.seatStatus,jdbcType=VARCHAR},
+            #{order.orderStatus,jdbcType=VARCHAR},
+            #{order.orderStart,jdbcType=TIMESTAMP},
+            #{order.orderFinish,jdbcType=TIMESTAMP},
+            #{order.orderCreate,jdbcType=TIMESTAMP},
+            #{order.deleted,jdbcType=INTEGER}
+        )
+</insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="order.orderId">
+        INSERT INTO order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="order.orderId!=null"> order_id,</if>
+            <if test="order.userId!=null"> user_id,</if>
+            <if test="order.seatStatus!=null"> seat_status,</if>
+            <if test="order.orderStatus!=null"> order_status,</if>
+            <if test="order.orderStart!=null"> order_start,</if>
+            <if test="order.orderFinish!=null"> order_finish,</if>
+            <if test="order.orderCreate!=null"> order_create,</if>
+            <if test="order.deleted!=null"> deleted</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="order.orderId!=null"> #{order.orderId,jdbcType=INTEGER},</if>
+            <if test="order.userId!=null"> #{order.userId,jdbcType=INTEGER},</if>
+            <if test="order.seatStatus!=null"> #{order.seatStatus,jdbcType=VARCHAR},</if>
+            <if test="order.orderStatus!=null"> #{order.orderStatus,jdbcType=VARCHAR},</if>
+            <if test="order.orderStart!=null"> #{order.orderStart,jdbcType=TIMESTAMP},</if>
+            <if test="order.orderFinish!=null"> #{order.orderFinish,jdbcType=TIMESTAMP},</if>
+            <if test="order.orderCreate!=null"> #{order.orderCreate,jdbcType=TIMESTAMP},</if>
+            <if test="order.deleted!=null"> #{order.deleted,jdbcType=INTEGER}</if>
+        </trim>
+</insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">        INSERT INTO order(
+        <include refid="Base_Column_List"/>
+        )VALUES
+        <foreach collection="orders" item="order" index="index" separator=",">
+            (
+            #{order.orderId,jdbcType=INTEGER},
+            #{order.userId,jdbcType=INTEGER},
+            #{order.seatStatus,jdbcType=VARCHAR},
+            #{order.orderStatus,jdbcType=VARCHAR},
+            #{order.orderStart,jdbcType=TIMESTAMP},
+            #{order.orderFinish,jdbcType=TIMESTAMP},
+            #{order.orderCreate,jdbcType=TIMESTAMP},
+            #{order.deleted,jdbcType=INTEGER}
+            )
+        </foreach>
+</insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE order
+        <set>
+                <if test="order.orderId != null"> order_id = #{order.orderId,jdbcType=INTEGER},</if>
+                <if test="order.userId != null"> user_id = #{order.userId,jdbcType=INTEGER},</if>
+                <if test="order.seatStatus != null"> seat_status = #{order.seatStatus,jdbcType=VARCHAR},</if>
+                <if test="order.orderStatus != null"> order_status = #{order.orderStatus,jdbcType=VARCHAR},</if>
+                <if test="order.orderStart != null"> order_start = #{order.orderStart,jdbcType=TIMESTAMP},</if>
+                <if test="order.orderFinish != null"> order_finish = #{order.orderFinish,jdbcType=TIMESTAMP},</if>
+                <if test="order.orderCreate != null"> order_create = #{order.orderCreate,jdbcType=TIMESTAMP},</if>
+                <if test="order.deleted != null"> deleted = #{order.deleted,jdbcType=INTEGER}</if>
+        </set>
+		WHERE order_id = #{order.orderId,jdbcType=INTEGER}
+    </update>
+</mapper>
+
