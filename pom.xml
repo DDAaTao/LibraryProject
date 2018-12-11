@@ -19,6 +19,8 @@
 	</parent>
 
 	<properties>
+		<lombok.version>1.16.16</lombok.version>
+		<lombok.plugin.version>1.16.16.0</lombok.plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -68,9 +70,10 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.16.10</version>
+			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<!-- easypoi工具包 -->
 		<dependency>
 			<groupId>cn.afterturn</groupId>
@@ -127,6 +130,19 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok-maven-plugin</artifactId>
+				<version>${lombok.plugin.version}</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>delombok</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
