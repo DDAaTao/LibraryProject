@@ -1,5 +1,8 @@
 server:
   port: 7777
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
 spring:
   cache:
     caffeine:
