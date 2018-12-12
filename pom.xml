@@ -148,6 +148,20 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.6.2</version>
 				<configuration>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>com.google.dagger</groupId>
+							<artifactId>dagger-compiler</artifactId>
+							<version>2.15</version>
+						</path>
+
+						<!-- SOLUTION -->
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+					</annotationProcessorPaths>
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
