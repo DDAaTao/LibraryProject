@@ -5,8 +5,8 @@
 
 	<groupId>com.library</groupId>
 	<artifactId>libraryproject</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<version>0.0.2-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
 	<name>libraryproject</name>
 	<description>Demo project for Spring Boot</description>

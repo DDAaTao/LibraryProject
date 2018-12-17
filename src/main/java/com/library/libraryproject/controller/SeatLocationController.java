@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-
+/**
+ * @author dcl
+ * */
 @Controller
-@RequestMapping("location")
+@RequestMapping("/location")
 public class SeatLocationController {
 
     @Autowired
@@ -21,7 +23,7 @@ public class SeatLocationController {
      * */
     @RequestMapping("/all")
     @ResponseBody
-    public AjaxResult<List<Area>> getAllLocation(){
+    public AjaxResult getAllLocation(){
         List<Area> allRegion = originConfigService.getAllRegion();
         return AjaxResult.success(allRegion);
     }
