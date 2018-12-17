@@ -23,5 +23,5 @@ public class OriginConfig {
     private String configName;
     private String configBody;
     private String areaId;
-    private Integer delete;
+    private Integer deleted;
 }
