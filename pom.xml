@@ -19,7 +19,7 @@
 	</parent>
 
 	<properties>
-		<lombok.version>1.12.6</lombok.version>
+		<lombok.version>1.16.18</lombok.version>
 		<lombok.plugin.version>1.16.16.0</lombok.plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -146,7 +146,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.6.2</version>
+				<version>3.3</version>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
