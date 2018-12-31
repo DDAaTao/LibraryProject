@@ -30,6 +30,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 下载所有用户Excel
+     * */
     @RequestMapping("/allUserDownload")
     @ResponseBody
     public AjaxResult allUserDownload(HttpServletResponse httpServletResponse){
@@ -42,6 +45,9 @@ public class UserController {
         return AjaxResult.success();
     }
 
+    /**
+     * 导入文件
+     * */
     @RequestMapping("/importExcel")
     @ResponseBody
     public AjaxResult importExcel(MultipartFile userExcel){
@@ -54,6 +60,9 @@ public class UserController {
         return AjaxResult.success();
     }
 
+    /**
+     * 删除用户
+     * */
     @RequestMapping("/deleteUser")
     @ResponseBody
     public AjaxResult deleteUser(Integer userId){

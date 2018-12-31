@@ -1,5 +1,6 @@
 package com.library.libraryproject.service.impl;
 
+import com.library.libraryproject.entity.Param.RoomSeatsQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +35,10 @@ public class SeatLocationServiceImpl implements SeatLocationService{
     @Override
     public int update(SeatLocation seatLocation){
         return seatLocationDao.update(seatLocation);
+    }
+
+    @Override
+    public List<SeatLocation> getRoomSeats(RoomSeatsQueryParam param) {
+        return seatLocationDao.getRoomSeats(param.getSeatArea(), param.getSeatBuilding(), param.getSeatStorey(), param.getSeatRoom());
     }
 }

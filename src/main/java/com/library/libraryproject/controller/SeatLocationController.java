@@ -1,8 +1,11 @@
 package com.library.libraryproject.controller;
 
 import com.library.libraryproject.common.AjaxResult;
+import com.library.libraryproject.entity.Param.RoomSeatsQueryParam;
+import com.library.libraryproject.entity.SeatLocation;
 import com.library.libraryproject.entity.dto.Area;
 import com.library.libraryproject.service.OriginConfigService;
+import com.library.libraryproject.service.SeatLocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +21,12 @@ public class SeatLocationController {
 
     @Autowired
     private OriginConfigService originConfigService;
+
+    @Autowired
+    private SeatLocationService seatLocationService;
+
     /**
-     * 获取所有阅览室信息信息 todo 此处需要设计一个List的返回
+     * 获取所有阅览室信息信息
      * */
     @RequestMapping("/all")
     @ResponseBody
@@ -30,7 +37,12 @@ public class SeatLocationController {
     /**
      * 获取某阅览室座位信息
      * */
-
+    @RequestMapping("/room")
+    @ResponseBody
+    public AjaxResult getRoomSeats(RoomSeatsQueryParam param){
+        List<SeatLocation> roomSeats = seatLocationService.getRoomSeats(param);
+        return AjaxResult.success(roomSeats);
+    }
 
     /**
      *
