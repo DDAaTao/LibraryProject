@@ -19,4 +19,5 @@ public interface UserManager {
     void allUsersDownload(HttpServletResponse httpServletResponse) throws IOException;
 
     void importUsers(MultipartFile multipartFile) throws IOException;
+
 }
