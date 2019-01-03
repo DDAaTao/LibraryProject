@@ -19,3 +19,4 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*Dao.xml
   type-aliases-package: com.library.libraryproject.entity
+

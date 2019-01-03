@@ -99,6 +99,7 @@ deleted
         select
         <include refid="Base_Column_List"/>
         from origin_config
+        where deleted = 0
     </select>
 </mapper>
 

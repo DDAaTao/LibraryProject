@@ -19,7 +19,7 @@ import java.util.Date;
 public class Order {
     private Integer orderId;
     private Integer userId;
-    private String seatStatus;
+    private String seatId;
     private String orderStatus;
     private Date orderStart;
     private Date orderFinish;

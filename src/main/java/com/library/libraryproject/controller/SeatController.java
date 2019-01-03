@@ -1,6 +1,7 @@
 package com.library.libraryproject.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  * @author dcl
@@ -27,6 +28,14 @@ public class SeatController {
      * */
 
     /**
-     *
+     * 预约占座方法
+     * */
+
+    /**
+     * 获取某Room内所有座位信息以及当前占座状态信息
+     * */
+
+    /**
+     * 获取某座位的今/明两天的占座信息
      * */
 }

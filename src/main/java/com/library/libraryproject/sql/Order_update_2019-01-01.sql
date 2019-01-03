@@ -1,0 +1,2 @@
+ALTER TABLE order
+	ADD seat_id VARCHAR(50) NOT NULL DEFAULT '' COMMENT 'seatId';ALTER TABLE order DROP COLUMN seat_status;
