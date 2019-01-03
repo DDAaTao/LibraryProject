@@ -85,4 +85,8 @@ public class UserController {
         }
         return AjaxResult.success();
     }
+    /**
+     * 进行用户状态的判读，判断其是否能进行占座
+     * */
+
 }

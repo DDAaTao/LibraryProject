@@ -17,4 +17,8 @@ public interface OrderDao {
     int insertList(@Param("orders") List<Order> orders);
 
     int update(@Param("order") Order order);
+
+    List<Order> findByseatId(@Param("seatId")String seatId);
+
+
 }

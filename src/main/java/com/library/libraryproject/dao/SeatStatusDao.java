@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Mapper
+@Deprecated
 public interface SeatStatusDao {
     int insert(@Param("seatStatus") SeatStatus seatStatus);
 

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
+@Deprecated
 public class SeatStatusServiceImpl implements SeatStatusService{
 
     @Autowired

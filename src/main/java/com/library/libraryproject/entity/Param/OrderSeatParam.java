@@ -4,16 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
 /**
  * @author dcl
  * */
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class RoomSeatsQueryParam {
-    private String seatArea;
-    private String seatBuilding;
-    private String seatStorey;
-    private String seatRoom;
+@NoArgsConstructor
+public class OrderSeatParam {
+    private Date orderStart;
+    private Date orderFinish;
+    private Integer userId;
+    private String seatId;
 }

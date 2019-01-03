@@ -11,12 +11,15 @@ import java.util.Date;
 /**
  * @author dcl
  * @date 2018年9月14日00:01:30
+ *
+ * TODO 暂时弃用，使用order进行替代
  * */
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Deprecated
 public class SeatStatus {
     private String seatId;
     private Date seatStart;
