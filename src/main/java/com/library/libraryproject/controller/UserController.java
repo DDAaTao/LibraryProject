@@ -2,6 +2,7 @@ package com.library.libraryproject.controller;
 
 import com.library.libraryproject.common.AjaxResult;
 import com.library.libraryproject.common.ResultCode;
+import com.library.libraryproject.dao.UserDao;
 import com.library.libraryproject.manager.UserManager;
 import com.library.libraryproject.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,15 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserDao userDao;
+
+    @RequestMapping("/all")
+    @ResponseBody
+    public AjaxResult allUser(){
+        return AjaxResult.success(userDao.find());
+    }
 
     /**
      * 下载所有用户Excel
