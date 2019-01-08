@@ -4,6 +4,7 @@ package com.library.libraryproject.manager.impl;
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.library.libraryproject.entity.User;
+import com.library.libraryproject.entity.enums.UserStatus;
 import com.library.libraryproject.manager.UserManager;
 import com.library.libraryproject.service.UserService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -75,6 +76,8 @@ public class UserManagerImpl implements UserManager {
                         .userPassword(row.getCell(2).toString())
                         .userSex(row.getCell(3).toString())
                         .userAcademy(row.getCell(4).toString())
+                        .userViolation("0")
+                        .userStatus(UserStatus.FREE.getCode())
                         .build());
             }
         }

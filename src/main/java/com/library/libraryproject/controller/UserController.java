@@ -3,11 +3,14 @@ package com.library.libraryproject.controller;
 import com.library.libraryproject.common.AjaxResult;
 import com.library.libraryproject.common.ResultCode;
 import com.library.libraryproject.dao.UserDao;
+import com.library.libraryproject.entity.User;
 import com.library.libraryproject.manager.UserManager;
 import com.library.libraryproject.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,6 +37,9 @@ public class UserController {
     @Autowired
     private UserDao userDao;
 
+    /**
+     * 获取所有的用户
+     * */
     @RequestMapping("/all")
     @ResponseBody
     public AjaxResult allUser(){
@@ -58,7 +64,7 @@ public class UserController {
     /**
      * 导入文件
      * */
-    @RequestMapping("/importExcel")
+    @PostMapping("/importExcel")
     @ResponseBody
     public AjaxResult importExcel(MultipartFile userExcel){
         try {
@@ -86,7 +92,13 @@ public class UserController {
         return AjaxResult.success();
     }
     /**
-     * 进行用户状态的判读，判断其是否能进行占座
+     * 获取用户信息，多处通用
+     * 前端可以利用获取的用户信息进行状态的判断，从而判断其是否能够占座
      * */
+    @RequestMapping("/user")
+    @ResponseBody
+    public AjaxResult getUserMsg(Integer userId){
+        return AjaxResult.success(userDao.findByUserId(userId));
+    }
 
 }

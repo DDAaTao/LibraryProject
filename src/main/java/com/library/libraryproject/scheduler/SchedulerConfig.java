@@ -25,10 +25,10 @@ public class SchedulerConfig implements SchedulingConfigurer {
     }
 
     /**
-     * 此处shutdown未知报红，后续再进行查验
+     * 此处shutdown曾报红是因为方法的修饰符为public，应为private
      * */
     @Bean(destroyMethod = "shutdown")
-    public Executor setTaskExecutor(){
+    private Executor setTaskExecutor(){
         // 此处的第一个参数为最大多少个线程
         ScheduledExecutorService scheduledExecutorService = new ScheduledThreadPoolExecutor(3
                 , new BasicThreadFactory.Builder().namingPattern("scheduler-pool-%d").daemon(true).build());

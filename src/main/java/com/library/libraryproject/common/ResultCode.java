@@ -35,7 +35,8 @@ public enum ResultCode {
      * result fail
      * */
     FAIL("500", "fail"),
-    ORDER_FAIL("order.fail", "占座失败");
+    ORDER_FAIL("order.fail", "占座失败"),
+    PARAM_ERROR("param.error", "参数校验失败");
 
     private String code;
     private String msg;

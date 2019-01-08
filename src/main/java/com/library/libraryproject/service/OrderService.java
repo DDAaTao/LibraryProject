@@ -18,4 +18,8 @@ public interface OrderService{
      * 占座方法
      * */
     Boolean orderSeat(OrderSeatParam param);
+
+    /**
+     * 获取某座位的今/明两天的占座信息
+     * */
 }

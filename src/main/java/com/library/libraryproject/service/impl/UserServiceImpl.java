@@ -15,6 +15,9 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserDao userDao;
 
+    /**
+     * 在调用此方法的时候要注意相关默认字段的处理
+     * */
     @Override
     public int insert(User user){
         return userDao.insert(user);
