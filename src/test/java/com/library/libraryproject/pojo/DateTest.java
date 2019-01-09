@@ -12,5 +12,4 @@ public class DateTest {
         System.out.println(now.getTime()-1);
         System.out.println(new Date(now.getTime()-1000));
     }
-
 }

@@ -7,7 +7,6 @@ import java.util.List;
 import com.library.libraryproject.entity.Manager;
 import com.library.libraryproject.dao.ManagerDao;
 import com.library.libraryproject.service.ManagerService;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ManagerServiceImpl implements ManagerService{
