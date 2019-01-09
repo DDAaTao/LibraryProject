@@ -10,7 +10,6 @@ import com.library.libraryproject.service.ManagerService;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 public class ManagerServiceImpl implements ManagerService{
 
     @Autowired

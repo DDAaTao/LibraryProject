@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/seat")
+@CrossOrigin
 public class SeatController {
 
     @Autowired

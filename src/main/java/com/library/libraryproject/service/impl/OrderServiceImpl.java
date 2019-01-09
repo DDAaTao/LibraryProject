@@ -3,13 +3,12 @@ package com.library.libraryproject.service.impl;
 import com.library.libraryproject.dao.UserDao;
 import com.library.libraryproject.entity.Param.OrderSeatParam;
 import com.library.libraryproject.entity.User;
-import com.library.libraryproject.entity.enums.SeatStatus;
+import com.library.libraryproject.entity.enums.OrderStatus;
 import com.library.libraryproject.entity.enums.UserStatus;
 import com.library.libraryproject.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import com.library.libraryproject.entity.Order;
@@ -22,7 +21,6 @@ import org.springframework.util.CollectionUtils;
  * @author dcl
  */
 @Service
-@Transactional
 public class OrderServiceImpl implements OrderService{
 
     @Autowired
@@ -83,7 +81,7 @@ public class OrderServiceImpl implements OrderService{
                 .orderStart(param.getOrderStart())
                 // 注意此处为了防止时间冲突，结束时间默认减去1S
                 .orderFinish(new Date(param.getOrderFinish().getTime() - 1000))
-                .orderStatus(SeatStatus.NORMAL.getCode())
+                .orderStatus(OrderStatus.NORMAL.getCode())
                 .deleted(0)
                 .build());
         // 占座信息插入后，更新占座用户信息为已占座

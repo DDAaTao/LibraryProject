@@ -6,10 +6,8 @@ import java.util.List;
 import com.library.libraryproject.entity.User;
 import com.library.libraryproject.dao.UserDao;
 import com.library.libraryproject.service.UserService;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService{
 
     @Autowired

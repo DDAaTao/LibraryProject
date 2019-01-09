@@ -7,7 +7,7 @@ import java.util.List;
 import com.library.libraryproject.entity.Manager;
 import org.springframework.stereotype.Repository;
 
-@Repository("managerDao")
+@Repository
 @Mapper
 public interface ManagerDao {
     int insert(@Param("manager") Manager manager);

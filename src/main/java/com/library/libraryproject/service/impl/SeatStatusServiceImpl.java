@@ -7,10 +7,8 @@ import java.util.List;
 import com.library.libraryproject.entity.SeatStatus;
 import com.library.libraryproject.dao.SeatStatusDao;
 import com.library.libraryproject.service.SeatStatusService;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 @Deprecated
 public class SeatStatusServiceImpl implements SeatStatusService{
 

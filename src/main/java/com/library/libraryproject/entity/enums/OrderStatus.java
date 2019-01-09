@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * @author dcl
  * */
-public enum SeatStatus {
+public enum OrderStatus {
     /**
      * 表示占座的多种状态
      * */
@@ -16,7 +16,7 @@ public enum SeatStatus {
     private String code;
     @Getter
     private String name;
-    SeatStatus(String code, String name){
+    OrderStatus(String code, String name){
         this.code = code;
         this.name = name;
     }

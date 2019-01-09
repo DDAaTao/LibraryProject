@@ -19,7 +19,6 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Deprecated
 public class SeatStatus {
     private String seatId;
     private Date seatStart;
