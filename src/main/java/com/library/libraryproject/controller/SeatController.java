@@ -2,6 +2,7 @@ package com.library.libraryproject.controller;
 
 import com.library.libraryproject.common.AjaxResult;
 import com.library.libraryproject.common.ResultCode;
+import com.library.libraryproject.entity.Order;
 import com.library.libraryproject.entity.Param.OrderSeatParam;
 import com.library.libraryproject.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * @author dcl
@@ -76,11 +79,10 @@ public class SeatController {
      * */
     @RequestMapping("/order/msg")
     @ResponseBody
-    public AjaxResult getNearOrderMsg(){
-        // todo
+    public AjaxResult getNearOrderMsg(String seatId){
+        List<Order> nearOrderMsg = orderService.getNearOrderMsg(seatId);
 
-
-        return AjaxResult.success();
+        return AjaxResult.success(nearOrderMsg);
     }
 
 

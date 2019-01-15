@@ -22,4 +22,5 @@ public interface OrderService{
     /**
      * 获取某座位的今/明两天的占座信息
      * */
+    List<Order> getNearOrderMsg(String seatId);
 }

@@ -18,7 +18,6 @@ public interface OrderDao {
 
     int update(@Param("order") Order order);
 
-    List<Order> findByseatId(@Param("seatId")String seatId);
-
+    List<Order> findBySeatId(@Param("seatId")String seatId);
 
 }

@@ -58,7 +58,7 @@ public class OrderServiceImpl implements OrderService{
     @Transactional(rollbackFor = Exception.class)
     public Boolean orderSeat(OrderSeatParam param) {
         // 初步先在后端进行一次校验，后续再进行扩展
-        List<Order> orderList = orderDao.findByseatId(param.getSeatId());
+        List<Order> orderList = orderDao.findBySeatId(param.getSeatId());
         // 当数据库中有该座位的占座信息时，判断此处占座时间是否有冲突
         if (!CollectionUtils.isEmpty(orderList)){
             // 遍历所有占座信息
@@ -90,5 +90,10 @@ public class OrderServiceImpl implements OrderService{
                 .userStatus(UserStatus.BOOKED.getCode())
                 .build());
         return insert > 0 ;
+    }
+
+    @Override
+    public List<Order> getNearOrderMsg(String seatId) {
+        return  orderDao.findBySeatId(seatId);
     }
 }
