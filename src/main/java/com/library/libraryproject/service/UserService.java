@@ -24,4 +24,9 @@ public interface UserService{
     List<User> queryAll();
 
     int dropUserById(Integer userId);
+
+    /**
+     * 返回用户信息，顺便判断预约状态与当前时间，如果当前时间超过了六点，则返回的状态为可以预约，数据库状态不变
+     * */
+    User getUserForCheck(Integer userId);
 }

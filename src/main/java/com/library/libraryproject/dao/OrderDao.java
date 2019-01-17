@@ -20,4 +20,7 @@ public interface OrderDao {
 
     List<Order> findBySeatId(@Param("seatId")String seatId);
 
+    List<Order> findByUserId(@Param("userId")Integer userId);
+
+
 }

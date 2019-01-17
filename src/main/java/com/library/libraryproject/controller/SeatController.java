@@ -81,7 +81,6 @@ public class SeatController {
     @ResponseBody
     public AjaxResult getNearOrderMsg(String seatId){
         List<Order> nearOrderMsg = orderService.getNearOrderMsg(seatId);
-
         return AjaxResult.success(nearOrderMsg);
     }
 

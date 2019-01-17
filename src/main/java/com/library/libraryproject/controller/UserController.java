@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.library.libraryproject.common.ResultCode.PARAM_ERROR;
+
 /**
  * @author dcl
  * @date 2018年10月7日16:07:37
@@ -98,7 +100,10 @@ public class UserController {
     @RequestMapping("/user")
     @ResponseBody
     public AjaxResult getUserMsg(Integer userId){
-        return AjaxResult.success(userDao.findByUserId(userId));
+        if (userId == null){
+            return AjaxResult.fail(PARAM_ERROR.getCode(), "用户信息为null");
+        }
+        return AjaxResult.success(userService.getUserForCheck(userId));
     }
 
 }
