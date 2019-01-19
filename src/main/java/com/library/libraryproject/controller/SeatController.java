@@ -34,7 +34,7 @@ public class SeatController {
     @PostMapping("/order")
     @ResponseBody
     public AjaxResult orderSeat(OrderSeatParam param){
-        // 在此处进行参数校验和用户状态校验 todo 可优化：加一个统一的异常拦截过滤器，将对应的异常抛给前端
+        // 在此处进行参数校验和用户状态校验 并且检验占座时间是否满足要求 todo 可优化：加一个统一的异常拦截过滤器，将对应的异常抛给前端
         try{
             checkOrderParam(param);
         }catch (Exception e){
@@ -84,6 +84,10 @@ public class SeatController {
         return AjaxResult.success(nearOrderMsg);
     }
 
+    /**
+     * 手动占座结束方法
+     * */
+
 
 
     private void checkOrderParam(OrderSeatParam param){
@@ -91,5 +95,6 @@ public class SeatController {
         Assert.notNull(param.getSeatId(), "预约座位Id为空");
         Assert.notNull(param.getOrderStart(), "预约开始时间为空");
         Assert.notNull(param.getOrderFinish(), "预约结束时间为空");
+
     }
 }
