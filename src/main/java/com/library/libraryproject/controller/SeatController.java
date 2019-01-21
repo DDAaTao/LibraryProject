@@ -5,6 +5,7 @@ import com.library.libraryproject.common.ResultCode;
 import com.library.libraryproject.entity.Order;
 import com.library.libraryproject.entity.Param.OrderSeatParam;
 import com.library.libraryproject.service.OrderService;
+import com.library.libraryproject.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,12 +36,18 @@ public class SeatController {
     @PostMapping("/order")
     @ResponseBody
     public AjaxResult orderSeat(OrderSeatParam param){
-        // 在此处进行参数校验和用户状态校验 并且检验占座时间是否满足要求 todo 可优化：加一个统一的异常拦截过滤器，将对应的异常抛给前端
+        // 在此处进行参数校验和用户状态校验  todo 可优化：加一个统一的异常拦截过滤器，将对应的异常抛给前端
         try{
             checkOrderParam(param);
         }catch (Exception e){
             return AjaxResult.fail(ResultCode.PARAM_ERROR.getCode(), e.getMessage());
         }
+        // 并且检验占座时间是否满足要求
+        if (!checkOrderTime(param)){
+            return AjaxResult.fail(ResultCode.ORDER_TIME_ERROR.getCode(), ResultCode.ORDER_TIME_ERROR.getMsg());
+        }
+
+
         Boolean orderResult;
         try {
             // 调用占座方法
@@ -89,12 +97,42 @@ public class SeatController {
      * */
 
 
-
+    /**
+     * 进行参数的校验，并且进行时间的判断（用于占座上时间的限制）
+     * */
     private void checkOrderParam(OrderSeatParam param){
         Assert.notNull(param.getUserId(), "预约用户Id为空");
         Assert.notNull(param.getSeatId(), "预约座位Id为空");
         Assert.notNull(param.getOrderStart(), "预约开始时间为空");
         Assert.notNull(param.getOrderFinish(), "预约结束时间为空");
+    }
 
+    /**
+     * 进行时间的判断是否满足要求（用于占座上时间的限制）
+     * 主要逻辑是判断当前时间是否大于18点，如果大于大于18点的话，则允许第二天的占座，并且只允许提前一天
+     * 判断时间有两个维度，一个是创建时间、一个是预约开始和结束时间
+     * */
+    private Boolean checkOrderTime(OrderSeatParam param){
+        // 预约起始时间要大于今天的起始,否则直接返回false
+        if (DateUtils.getDayStartTime(DateUtils.now()).getTime() > param.getOrderStart().getTime()){
+            return false;
+        }
+
+        // 先获取当天晚上六点的时间
+        Date beginTime = DateUtils.getFormatDate("18:00:00", "HH:mm:ss");
+        // 判断当前时间是否大于六点
+        if (DateUtils.sameDayCompare(DateUtils.now(), beginTime)){
+            // 如果当前时间已经大于六点，则允许预定，只要保证预约结束时间在第二天结束之前即可
+            Date tomorrow = DateUtils.addDays(DateUtils.now(), 1);
+            if (DateUtils.getDayEndTime(tomorrow).getTime() > param.getOrderFinish().getTime()){
+                return true;
+            }
+        } else {
+            //如果当前时间小于六点，那么只能预约今天的，要保证预约结束时间在今天结束之前
+            if (DateUtils.getDayEndTime(DateUtils.now()).getTime() > param.getOrderFinish().getTime()){
+                return true;
+            }
+        }
+        return false;
     }
 }

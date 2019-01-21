@@ -36,7 +36,8 @@ public enum ResultCode {
      * */
     FAIL("500", "fail"),
     ORDER_FAIL("order.fail", "占座失败"),
-    PARAM_ERROR("param.error", "参数校验失败");
+    PARAM_ERROR("param.error", "参数校验失败"),
+    ORDER_TIME_ERROR("order.time.error", "预约的相关时间选择有误");
 
     private String code;
     private String msg;

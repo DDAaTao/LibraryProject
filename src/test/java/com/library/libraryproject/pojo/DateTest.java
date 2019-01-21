@@ -18,7 +18,7 @@ public class DateTest {
 
     @Test
     public void testGetHours(){
-        // todo 先转化为小时纬度点字符串，然后再让字符串转化为今天点时间，然后再进行比较
+        // todo 先转化为小时维度点字符串，然后再让字符串转化为今天点时间，然后再进行比较
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
         System.out.println(simpleDateFormat.format(new Date()));
         try {
@@ -27,7 +27,22 @@ public class DateTest {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
 
+    @Test
+    public void testEquals() throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+        Date parse = simpleDateFormat.parse("22:26");
+        Date parse1 = simpleDateFormat.parse(simpleDateFormat.format(new Date()));
+        System.out.println(parse.getTime()==parse1.getTime());
+    }
 
+    @Test
+    public void testUtilsEquals(){
+        System.out.println(DateUtils.now());
+        System.out.println(DateUtils.addDays(DateUtils.now(), 1));
+        System.out.println(DateUtils.getDayStartTime(DateUtils.addDays(DateUtils.now(), 1)));
+        System.out.println(DateUtils.getDayEndTime(DateUtils.addDays(DateUtils.now(), 1)));
+        System.out.println(DateUtils.sameDayCompare(DateUtils.now(), DateUtils.addDays(DateUtils.now(), 1)));
     }
 }
