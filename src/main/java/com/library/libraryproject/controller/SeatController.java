@@ -4,6 +4,7 @@ import com.library.libraryproject.common.AjaxResult;
 import com.library.libraryproject.common.ResultCode;
 import com.library.libraryproject.entity.Order;
 import com.library.libraryproject.entity.Param.OrderSeatParam;
+import com.library.libraryproject.entity.Param.RoomSeatsQueryParam;
 import com.library.libraryproject.service.OrderService;
 import com.library.libraryproject.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,19 +72,26 @@ public class SeatController {
      * */
 
     /**
-     * 占座撤销方法
+     * 占座撤销方法（提前）
      * */
 
+
     /**
-     * 预约占座方法
+     * 手动占座结束方法
      * */
 
     /**
      * 获取某Room内所有座位信息以及当前占座状态信息
      * */
+    @RequestMapping("/room/orders")
+    @ResponseBody
+    public AjaxResult getRoomOrders(RoomSeatsQueryParam param){
+        orderService.getRoomOrders(param);
+        return AjaxResult.success();
+    }
 
     /**
-     * 获取某座位的今/明两天的占座信息
+     * 获取某座位的今/明两天的占座信息,实际上其他天的信息已经被其他逻辑限制了
      * */
     @RequestMapping("/order/msg")
     @ResponseBody
@@ -91,11 +99,6 @@ public class SeatController {
         List<Order> nearOrderMsg = orderService.getNearOrderMsg(seatId);
         return AjaxResult.success(nearOrderMsg);
     }
-
-    /**
-     * 手动占座结束方法
-     * */
-
 
     /**
      * 进行参数的校验，并且进行时间的判断（用于占座上时间的限制）

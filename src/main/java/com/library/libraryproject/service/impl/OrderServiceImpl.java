@@ -1,16 +1,25 @@
 package com.library.libraryproject.service.impl;
 
+import com.google.common.collect.Lists;
 import com.library.libraryproject.dao.UserDao;
 import com.library.libraryproject.entity.Param.OrderSeatParam;
+import com.library.libraryproject.entity.Param.RoomSeatsQueryParam;
+import com.library.libraryproject.entity.SeatLocation;
 import com.library.libraryproject.entity.User;
 import com.library.libraryproject.entity.enums.OrderStatus;
 import com.library.libraryproject.entity.enums.UserStatus;
+import com.library.libraryproject.entity.vo.RoomSeatAndStatusVO;
+import com.library.libraryproject.service.SeatLocationService;
 import com.library.libraryproject.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.library.libraryproject.entity.Order;
 import com.library.libraryproject.dao.OrderDao;
 import com.library.libraryproject.service.OrderService;
@@ -28,6 +37,9 @@ public class OrderServiceImpl implements OrderService{
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private SeatLocationService seatLocationService;
 
     @Override
     public int insert(Order order){
@@ -95,5 +107,31 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public List<Order> getNearOrderMsg(String seatId) {
         return  orderDao.findBySeatId(seatId);
+    }
+
+    @Override
+    public List<RoomSeatAndStatusVO> getRoomOrders(RoomSeatsQueryParam param) {
+        // 先根据room信息获取其内的所有座位id
+        List<SeatLocation> roomSeats = seatLocationService.getRoomSeats(param);
+        // 将座位信息list转化为id的list
+        List<String> seatIds = roomSeats.stream().map(SeatLocation::getSeatId).collect(Collectors.toList());
+        // 通过id去查询order表里的所有相关占座信息
+        List<Order> bySeatIds = orderDao.findBySeatIds(seatIds);
+        // 先将相关的占座信息封装成id为key信息为value的形式，以便于后续的逻辑
+        Map<String, List<Order>> orderBySeatId = new HashMap<>(bySeatIds.size());
+        // 进行封装
+        for (Order bySeatId : bySeatIds) {
+            // 如果map里已有对应的id，则添加进去
+            if (orderBySeatId.containsKey(bySeatId.getSeatId())){
+                orderBySeatId.get(bySeatId.getSeatId()).add(bySeatId);
+            } else {
+                // 如果没有对应的id，则新增一个list添加进去
+                orderBySeatId.put(bySeatId.getSeatId(), Lists.newArrayList(bySeatId));
+            }
+        }
+        // 将占座信息封装成前端需要的样式
+
+
+        return null;
     }
 }

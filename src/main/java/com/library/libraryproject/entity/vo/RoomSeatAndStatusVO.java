@@ -1,9 +1,6 @@
 package com.library.libraryproject.entity.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * @author dcl
@@ -12,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class RoomSeatAndStatusVO {
     private String seatId;
     private String seatArea;

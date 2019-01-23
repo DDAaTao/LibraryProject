@@ -79,6 +79,20 @@ public class UserController {
     }
 
     /**
+     * 新增单个用户方法
+     * */
+    @RequestMapping("/addUser")
+    @ResponseBody
+    public AjaxResult addUser(User user){
+        try {
+            userService.insertSelective(user);
+        } catch (Exception e){
+            return AjaxResult.fail(ResultCode.ADD_USER_ERROR.getCode(), ResultCode.ADD_USER_ERROR.getMsg());
+        }
+        return AjaxResult.success();
+    }
+
+    /**
      * 删除用户
      * */
     @RequestMapping("/deleteUser")

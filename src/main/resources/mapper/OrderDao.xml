@@ -102,5 +102,16 @@ seat_id
             and user_id=#{userId,jdbcType=INTEGER}
         </if>
     </select>
+
+    <select id="findBySeatIds" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from order
+        where deleted = 0
+        and seat_id in
+            (<foreach collection="seatIds" item="seatId" index="index" separator=",">
+                #{seatId,jdbcType=VARCHAR},
+             </foreach>)
+    </select>
 </mapper>
 

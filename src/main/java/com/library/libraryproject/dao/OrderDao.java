@@ -18,9 +18,16 @@ public interface OrderDao {
 
     int update(@Param("order") Order order);
 
+    /**
+     * 获取某座位的今/明两天的占座信息,实际上其他天的信息已经被其他逻辑限制了
+     * */
     List<Order> findBySeatId(@Param("seatId")String seatId);
 
     List<Order> findByUserId(@Param("userId")Integer userId);
 
+    /**
+     * 获取座位list的今/明两天的占座信息,实际上其他天的信息已经被其他逻辑限制了
+     * */
+    List<Order> findBySeatIds(@Param("seatIds")List<String> seatIds);
 
 }
