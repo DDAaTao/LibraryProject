@@ -79,6 +79,16 @@ public class SeatController {
     /**
      * 手动占座结束方法
      * */
+    @RequestMapping("/order/finish")
+    @ResponseBody
+    public AjaxResult finishOrder(Integer userId){
+        try {
+            orderService.finishOrder(userId);
+        } catch (Exception e){
+            return AjaxResult.fail(ResultCode.FINISH_ORDER_FAIL.getCode(), ResultCode.FINISH_ORDER_FAIL.getMsg());
+        }
+        return AjaxResult.success();
+    }
 
     /**
      * 获取某Room内所有座位信息以及当前占座状态信息

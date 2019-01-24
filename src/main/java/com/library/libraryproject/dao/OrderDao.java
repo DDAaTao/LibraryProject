@@ -1,5 +1,6 @@
 package com.library.libraryproject.dao;
 
+import com.library.libraryproject.entity.Param.DeleteOrderParam;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,7 +17,7 @@ public interface OrderDao {
 
     int insertList(@Param("orders") List<Order> orders);
 
-    int update(@Param("order") Order order);
+    int deleteOrder(@Param("param")DeleteOrderParam param);
 
     /**
      * 获取某座位的今/明两天的占座信息,实际上其他天的信息已经被其他逻辑限制了

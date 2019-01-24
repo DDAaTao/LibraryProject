@@ -14,8 +14,6 @@ public interface OrderService{
 
     int insertList(List<Order> orders);
 
-    int update(Order order);
-
     /**
      * 占座方法
      * */
@@ -30,4 +28,10 @@ public interface OrderService{
      * 获取某Room内所有座位信息以及当前占座状态信息
      * */
     List<RoomSeatAndStatusVO> getRoomOrders(RoomSeatsQueryParam param);
+
+    /**
+     * 用户手动结束占座
+     * */
+    void finishOrder(Integer userId);
+
 }

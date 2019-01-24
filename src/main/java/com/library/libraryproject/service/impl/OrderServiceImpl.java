@@ -2,11 +2,13 @@ package com.library.libraryproject.service.impl;
 
 import com.google.common.collect.Lists;
 import com.library.libraryproject.dao.UserDao;
+import com.library.libraryproject.entity.Param.DeleteOrderParam;
 import com.library.libraryproject.entity.Param.OrderSeatParam;
 import com.library.libraryproject.entity.Param.RoomSeatsQueryParam;
 import com.library.libraryproject.entity.SeatLocation;
 import com.library.libraryproject.entity.User;
 import com.library.libraryproject.entity.enums.OrderStatus;
+import com.library.libraryproject.entity.enums.SeatStatusType;
 import com.library.libraryproject.entity.enums.UserStatus;
 import com.library.libraryproject.entity.vo.RoomSeatAndStatusVO;
 import com.library.libraryproject.service.SeatLocationService;
@@ -14,10 +16,7 @@ import com.library.libraryproject.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.library.libraryproject.entity.Order;
@@ -55,11 +54,6 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public int insertList(List<Order> orders){
         return orderDao.insertList(orders);
-    }
-
-    @Override
-    public int update(Order order){
-        return orderDao.update(order);
     }
 
     /**
@@ -130,8 +124,50 @@ public class OrderServiceImpl implements OrderService{
             }
         }
         // 将占座信息封装成前端需要的样式
+        List<RoomSeatAndStatusVO> resultList = new ArrayList<>(roomSeats.size());
+        for (String seatId : seatIds) {
+            // 如果能获取到信息代表此座位正在使用，如果获取的为空代表座位可以使用
+            List<Order> orders = orderBySeatId.get(seatId);
+            if (CollectionUtils.isEmpty(orders)){
+                resultList.add(RoomSeatAndStatusVO.builder()
+                        .seatId(seatId)
+                        .seatStatus(SeatStatusType.FREE.getCode())
+                        .build());
+            } else {
+                resultList.add(RoomSeatAndStatusVO.builder()
+                        .seatId(seatId)
+                        .seatStatus(SeatStatusType.BOOKED.getCode())
+                        .build());
+            }
+        }
+        return resultList;
+    }
 
-
-        return null;
+    @Override
+    @Transactional
+    public void finishOrder(Integer userId) {
+        // 占座信息：先查order，判断有无，如果无直接返回，如果有则进行update
+        List<Order> byUserId = orderDao.findByUserId(userId);
+        if (CollectionUtils.isEmpty(byUserId)){
+            return;
+        }
+        // 如果有占座信息则逻辑删除占座信息
+        List<Integer> orderIds = byUserId.stream().map(Order::getOrderId).collect(Collectors.toList());
+        orderDao.deleteOrder(DeleteOrderParam.builder()
+                .deleted(1)
+                .mdfDate(DateUtils.now())
+                .orderIds(orderIds)
+                .build());
+        // 查询个人信息
+        User user = userDao.findByUserId(userId);
+        // 判断状态是否是自由状态，如果不是则更新为自由状态
+        if (UserStatus.FREE.getCode().equalsIgnoreCase(user.getUserStatus())){
+            return;
+        }
+        // 如果不是则更新用户信息
+        userDao.update(User.builder()
+                .userId(user.getUserId())
+                .userStatus(UserStatus.FREE.getCode())
+                .build());
     }
 }

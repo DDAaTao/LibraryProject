@@ -107,6 +107,7 @@ public class UserController {
         }
         return AjaxResult.success();
     }
+
     /**
      * 获取用户信息，多处通用
      * 前端可以利用获取的用户信息进行状态的判断，从而判断其是否能够占座
@@ -119,5 +120,9 @@ public class UserController {
         }
         return AjaxResult.success(userService.getUserForCheck(userId));
     }
+
+    /**
+     * 查询用户的占座信息，用于展示（手动结束占座）
+     * */
 
 }

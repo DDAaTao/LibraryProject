@@ -1,8 +1,10 @@
 package com.library.libraryproject.entity.Param;
 
+
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author dcl
@@ -12,9 +14,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class OrderSeatParam {
-    private Date orderStart;
-    private Date orderFinish;
-    private Integer userId;
-    private String seatId;
+public class DeleteOrderParam {
+    private List<Integer> orderIds;
+    private Date mdfDate;
+    private Integer deleted;
 }
