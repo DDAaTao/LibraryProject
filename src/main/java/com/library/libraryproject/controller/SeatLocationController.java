@@ -8,6 +8,7 @@ import com.library.libraryproject.service.OriginConfigService;
 import com.library.libraryproject.service.SeatLocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -26,7 +27,7 @@ public class SeatLocationController {
     private SeatLocationService seatLocationService;
 
     /**
-     * 获取所有阅览室信息信息
+     * 获取所有阅览室信息
      * */
     @RequestMapping("/all")
     @ResponseBody
@@ -37,7 +38,7 @@ public class SeatLocationController {
     /**
      * 获取某阅览室座位信息
      * */
-    @RequestMapping("/room")
+    @PostMapping("/room")
     @ResponseBody
     public AjaxResult getRoomSeats(RoomSeatsQueryParam param){
         List<SeatLocation> roomSeats = seatLocationService.getRoomSeats(param);

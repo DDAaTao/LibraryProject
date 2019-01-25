@@ -21,16 +21,10 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private OrderDao orderDao;
 
-    /**
-     * 在调用此方法的时候要注意相关默认字段的处理
-     * */
-    @Override
-    public int insert(User user){
-        return userDao.insert(user);
-    }
-
     @Override
     public int insertSelective(User user){
+        user.setUserViolation("0");
+        user.setUserStatus(UserStatus.FREE.getCode());
         return userDao.insertSelective(user);
     }
 

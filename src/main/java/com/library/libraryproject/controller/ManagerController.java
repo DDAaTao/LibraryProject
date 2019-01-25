@@ -7,6 +7,7 @@ import com.library.libraryproject.service.ManagerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -26,7 +27,7 @@ public class ManagerController {
     /**
      * Manager登录方法
      * */
-    @RequestMapping("/login")
+    @PostMapping("/login")
     @ResponseBody
     public AjaxResult managerLogin(Manager loginManager){
         try {
@@ -45,7 +46,7 @@ public class ManagerController {
      *
      * 后端的参数校验做在service方法内部  todo 考虑定义一个统一的自用异常类
      * */
-    @RequestMapping("/register")
+    @PostMapping("/register")
     @ResponseBody
     public AjaxResult managerRegister(Manager registerManager){
         try {
