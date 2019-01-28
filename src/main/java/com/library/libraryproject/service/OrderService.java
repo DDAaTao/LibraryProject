@@ -25,7 +25,7 @@ public interface OrderService{
     List<Order> getNearOrderMsg(String seatId);
 
     /**
-     * 获取某Room内所有座位信息以及当前占座状态信息
+     * 获取某Room内所有座位信息以及当前占座状态信息,list里暂时只有seatId和seatStatus两个参数数据
      * */
     List<RoomSeatAndStatusVO> getRoomOrders(RoomSeatsQueryParam param);
 

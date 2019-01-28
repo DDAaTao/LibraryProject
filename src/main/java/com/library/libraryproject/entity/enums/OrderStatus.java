@@ -9,8 +9,8 @@ public enum OrderStatus {
     /**
      * 表示占座的多种状态
      * */
-    NORMAL("NORMAL", "正常"),
-    LEAVE("LEAVE", "离开");
+    NORMAL("normal", "正常"),
+    LEAVE("leave", "离开");
 
     @Getter
     private String code;

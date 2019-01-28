@@ -8,6 +8,7 @@ import com.library.libraryproject.entity.Param.RoomSeatsQueryParam;
 import com.library.libraryproject.service.OrderService;
 import com.library.libraryproject.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -64,20 +65,7 @@ public class SeatController {
     }
 
     /**
-     * 导入座位方法
-     * */
-
-    /**
-     * 删除座位方法
-     * */
-
-    /**
-     * 占座撤销方法（提前）
-     * */
-
-
-    /**
-     * 手动占座结束方法
+     * 手动占座结束方法（同撤销）
      * */
     @RequestMapping("/order/finish")
     @ResponseBody
@@ -93,7 +81,7 @@ public class SeatController {
     /**
      * 获取某Room内所有座位信息以及当前占座状态信息
      * */
-    @PostMapping("/room/orders")
+    @PostMapping(value = "/room/orders", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public AjaxResult getRoomOrders(RoomSeatsQueryParam param){
         orderService.getRoomOrders(param);

@@ -125,17 +125,25 @@ public class OrderServiceImpl implements OrderService{
         }
         // 将占座信息封装成前端需要的样式
         List<RoomSeatAndStatusVO> resultList = new ArrayList<>(roomSeats.size());
-        for (String seatId : seatIds) {
+        for (SeatLocation roomSeat : roomSeats) {
+            // 如果座位状态是deleted 的，则代表座位弃用，进行插入后即刻进行下一次循环
+            if (roomSeat.getDeleted() == 1){
+                resultList.add(RoomSeatAndStatusVO.builder()
+                        .seatId(roomSeat.getSeatId())
+                        .seatStatus(SeatStatusType.DEPRECATED.getCode())
+                        .build());
+                continue;
+            }
             // 如果能获取到信息代表此座位正在使用，如果获取的为空代表座位可以使用
-            List<Order> orders = orderBySeatId.get(seatId);
+            List<Order> orders = orderBySeatId.get(roomSeat.getSeatId());
             if (CollectionUtils.isEmpty(orders)){
                 resultList.add(RoomSeatAndStatusVO.builder()
-                        .seatId(seatId)
+                        .seatId(roomSeat.getSeatId())
                         .seatStatus(SeatStatusType.FREE.getCode())
                         .build());
             } else {
                 resultList.add(RoomSeatAndStatusVO.builder()
-                        .seatId(seatId)
+                        .seatId(roomSeat.getSeatId())
                         .seatStatus(SeatStatusType.BOOKED.getCode())
                         .build());
             }

@@ -7,10 +7,9 @@ import com.library.libraryproject.entity.dto.Area;
 import com.library.libraryproject.service.OriginConfigService;
 import com.library.libraryproject.service.SeatLocationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 /**
@@ -25,6 +24,16 @@ public class SeatLocationController {
 
     @Autowired
     private SeatLocationService seatLocationService;
+
+    /**
+     * test
+     * */
+    @PostMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public AjaxResult getParam(@RequestBody RoomSeatsQueryParam param){
+        System.out.println(param);
+        return AjaxResult.success(param);
+    }
 
     /**
      * 获取所有阅览室信息
@@ -46,7 +55,11 @@ public class SeatLocationController {
     }
 
     /**
-     * 导入座位信息表
+     * 导入座位信息表（manager）
+     * */
+
+    /**
+     * 删除座位方法（manager）
      * */
 
 
