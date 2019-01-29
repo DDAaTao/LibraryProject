@@ -31,4 +31,13 @@ public interface OrderDao {
      * */
     List<Order> findBySeatIds(@Param("seatIds")List<String> seatIds);
 
+    /**
+     * 获取所有没有被逻辑删除的数据，用于后台进程进行脏数据清理
+     * */
+    List<Order> findByDeleted(Integer deleted);
+
+    int deleteByOrderId(@Param("orderIds")List<Integer> orderIds);
+
+
+
 }

@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author dcl
@@ -15,6 +16,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @MapperScan("com.library.libraryproject.dao")
 @EnableCaching
+@EnableScheduling
 @SpringBootApplication(exclude={DruidDataSourceAutoConfigure.class})
 public class LibraryProjectApplication {
 
