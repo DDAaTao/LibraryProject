@@ -112,10 +112,7 @@ seat_building
         select
         <include refid="Base_Column_List"/>
         from seat_location
-        where seat_area=#{seatArea,jdbcType=VARCHAR}
-            and seat_building=#{seatBuilding,jdbcType=VARCHAR}
-            and seat_storey=#{seatStorey,jdbcType=VARCHAR}
-            and seat_room=#{seatRoom,jdbcType=VARCHAR}
+        where seat_room=#{seatRoom,jdbcType=VARCHAR}
     </select>
 </mapper>
 

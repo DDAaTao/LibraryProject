@@ -104,9 +104,9 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public List<RoomSeatAndStatusVO> getRoomOrders(RoomSeatsQueryParam param) {
+    public List<RoomSeatAndStatusVO> getRoomOrders(String roomId) {
         // 先根据room信息获取其内的所有座位id
-        List<SeatLocation> roomSeats = seatLocationService.getRoomSeats(param);
+        List<SeatLocation> roomSeats = seatLocationService.getRoomSeats(roomId);
         // 将座位信息list转化为id的list
         List<String> seatIds = roomSeats.stream().map(SeatLocation::getSeatId).collect(Collectors.toList());
         // 通过id去查询order表里的所有相关占座信息

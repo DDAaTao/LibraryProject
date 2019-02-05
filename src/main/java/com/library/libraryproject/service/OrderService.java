@@ -27,7 +27,7 @@ public interface OrderService{
     /**
      * 获取某Room内所有座位信息以及当前占座状态信息,list里暂时只有seatId和seatStatus两个参数数据
      * */
-    List<RoomSeatAndStatusVO> getRoomOrders(RoomSeatsQueryParam param);
+    List<RoomSeatAndStatusVO> getRoomOrders(String roomId);
 
     /**
      * 用户手动结束占座

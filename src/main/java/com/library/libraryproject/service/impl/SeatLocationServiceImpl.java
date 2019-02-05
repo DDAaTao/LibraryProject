@@ -36,7 +36,7 @@ public class SeatLocationServiceImpl implements SeatLocationService{
     }
 
     @Override
-    public List<SeatLocation> getRoomSeats(RoomSeatsQueryParam param) {
-        return seatLocationDao.getRoomSeats(param.getSeatArea(), param.getSeatBuilding(), param.getSeatStorey(), param.getSeatRoom());
+    public List<SeatLocation> getRoomSeats(String roomId) {
+        return seatLocationDao.getRoomSeats(roomId);
     }
 }

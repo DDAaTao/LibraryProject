@@ -18,7 +18,6 @@ public interface SeatLocationDao {
 
     int update(@Param("seatLocation") SeatLocation seatLocation);
 
-    List<SeatLocation> getRoomSeats(@Param("seatArea")String seatArea, @Param("seatBuilding")String seatBuilding
-            , @Param("seatStorey")String seatStorey, @Param("seatRoom")String seatRoom);
+    List<SeatLocation> getRoomSeats(@Param("seatRoom")String seatRoom);
 
 }

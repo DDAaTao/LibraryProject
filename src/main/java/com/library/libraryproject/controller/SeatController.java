@@ -81,10 +81,10 @@ public class SeatController {
     /**
      * 获取某Room内所有座位信息以及当前占座状态信息
      * */
-    @PostMapping(value = "/room/orders", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping("/room/orders")
     @ResponseBody
-    public AjaxResult getRoomOrders(RoomSeatsQueryParam param){
-        orderService.getRoomOrders(param);
+    public AjaxResult getRoomOrders(String roomId){
+        orderService.getRoomOrders(roomId);
         return AjaxResult.success();
     }
 

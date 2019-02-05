@@ -47,10 +47,10 @@ public class SeatLocationController {
     /**
      * 获取某阅览室座位信息
      * */
-    @PostMapping("/room")
+    @RequestMapping("/room")
     @ResponseBody
-    public AjaxResult getRoomSeats(RoomSeatsQueryParam param){
-        List<SeatLocation> roomSeats = seatLocationService.getRoomSeats(param);
+    public AjaxResult getRoomSeats(String roomId){
+        List<SeatLocation> roomSeats = seatLocationService.getRoomSeats(roomId);
         return AjaxResult.success(roomSeats);
     }
 
