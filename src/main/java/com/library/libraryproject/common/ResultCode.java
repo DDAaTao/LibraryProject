@@ -4,6 +4,7 @@ package com.library.libraryproject.common;
 
 /**
  * @author dcl
+ * 返回代号
  * */
 public enum ResultCode {
     /**
