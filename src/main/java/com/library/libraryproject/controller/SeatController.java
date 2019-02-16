@@ -4,6 +4,7 @@ import com.library.libraryproject.common.AjaxResult;
 import com.library.libraryproject.common.ResultCode;
 import com.library.libraryproject.entity.Order;
 import com.library.libraryproject.entity.Param.OrderSeatParam;
+import com.library.libraryproject.entity.vo.RoomSeatAndStatusVO;
 import com.library.libraryproject.service.OrderService;
 import com.library.libraryproject.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,8 +83,8 @@ public class SeatController {
     @RequestMapping("/room/orders")
     @ResponseBody
     public AjaxResult getRoomOrders(String roomId){
-        orderService.getRoomOrders(roomId);
-        return AjaxResult.success();
+        List<RoomSeatAndStatusVO> roomOrders = orderService.getRoomOrders(roomId);
+        return AjaxResult.success(roomOrders);
     }
 
     /**
