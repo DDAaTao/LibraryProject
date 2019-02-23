@@ -26,8 +26,8 @@ public class SeatStatusServiceImpl implements SeatStatusService{
     }
 
     @Override
-    public int insertList(List<SeatStatus> seatStatuss){
-        return seatStatusDao.insertList(seatStatuss);
+    public int insertList(List<SeatStatus> seatStatus){
+        return seatStatusDao.insertList(seatStatus);
     }
 
     @Override

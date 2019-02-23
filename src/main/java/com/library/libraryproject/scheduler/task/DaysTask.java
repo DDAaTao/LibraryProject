@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,6 +28,11 @@ public class DaysTask {
         log.info("orderTask start:" + now);
         // 获取所有没有被逻辑删除的订单信息
         List<Order> byDeleted = orderDao.findByDeleted(0);
+        // 如果没有数据则直接结束
+        if (CollectionUtils.isEmpty(byDeleted)){
+            log.info("none order ! orderTask end:" + DateUtils.now());
+            return;
+        }
         // 创建一个需要被逻辑删除的订单idList
         List<Integer> needDeleteIds = new ArrayList<>(byDeleted.size());
         // 便利所有相关的订单信息，判断其是否是需要进行逻辑删除的订单
@@ -37,8 +43,7 @@ public class DaysTask {
             }
         }
         // 执行逻辑删除订单信息的sql
-
-
+        orderDao.deleteByOrderIds(needDeleteIds);
         log.info("orderTask end:" + DateUtils.now());
     }
 }

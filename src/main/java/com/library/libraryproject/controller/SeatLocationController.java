@@ -1,6 +1,7 @@
 package com.library.libraryproject.controller;
 
 import com.library.libraryproject.common.AjaxResult;
+import com.library.libraryproject.common.ResultCode;
 import com.library.libraryproject.entity.Param.RoomSeatsQueryParam;
 import com.library.libraryproject.entity.SeatLocation;
 import com.library.libraryproject.entity.dto.Area;
@@ -61,6 +62,15 @@ public class SeatLocationController {
     /**
      * 删除座位方法（manager）
      * */
-
+    @RequestMapping("/delete")
+    @ResponseBody
+    public AjaxResult deleteSeats(String seatId){
+        int i = seatLocationService.deleteSeat(seatId);
+        if (i >= 0){
+            return AjaxResult.success();
+        }else {
+            return AjaxResult.fail(ResultCode.DELETE_SEAT_ERROR.getCode(), " 删除座位失败，请检查座位选择是否有误");
+        }
+    }
 
 }

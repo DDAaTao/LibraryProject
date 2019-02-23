@@ -25,6 +25,8 @@ public interface UserDao {
 
     int deleteByUserId(@Param("userId")Integer userId);
 
+    User findUserByNumberAndPassword(@Param("user")User user);
+
 
 
 }

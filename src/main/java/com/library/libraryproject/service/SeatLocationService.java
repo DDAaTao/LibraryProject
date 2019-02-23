@@ -18,4 +18,9 @@ public interface SeatLocationService{
      * 获取所有座位信息
      * */
     List<SeatLocation> getRoomSeats(String roomId);
+
+    /**
+     * 删除座（逻辑删除）
+     * */
+    int deleteSeat(String seatId);
 }

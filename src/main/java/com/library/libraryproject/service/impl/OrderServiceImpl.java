@@ -109,18 +109,24 @@ public class OrderServiceImpl implements OrderService{
         List<SeatLocation> roomSeats = seatLocationService.getRoomSeats(roomId);
         // 将座位信息list转化为id的list
         List<String> seatIds = roomSeats.stream().map(SeatLocation::getSeatId).collect(Collectors.toList());
+        // 如果查询出的座位数为0，则直接返回
+        if (CollectionUtils.isEmpty(seatIds)){
+            return Lists.newArrayList();
+        }
         // 通过id去查询order表里的所有相关占座信息
         List<Order> bySeatIds = orderDao.findBySeatIds(seatIds);
         // 先将相关的占座信息封装成id为key信息为value的形式，以便于后续的逻辑
         Map<String, List<Order>> orderBySeatId = new HashMap<>(bySeatIds.size());
-        // 进行封装
-        for (Order bySeatId : bySeatIds) {
-            // 如果map里已有对应的id，则添加进去
-            if (orderBySeatId.containsKey(bySeatId.getSeatId())){
-                orderBySeatId.get(bySeatId.getSeatId()).add(bySeatId);
-            } else {
-                // 如果没有对应的id，则新增一个list添加进去
-                orderBySeatId.put(bySeatId.getSeatId(), Lists.newArrayList(bySeatId));
+        if (!CollectionUtils.isEmpty(bySeatIds)){
+            // 进行封装
+            for (Order bySeatId : bySeatIds) {
+                // 如果map里已有对应的id，则添加进去
+                if (orderBySeatId.containsKey(bySeatId.getSeatId())){
+                    orderBySeatId.get(bySeatId.getSeatId()).add(bySeatId);
+                } else {
+                    // 如果没有对应的id，则新增一个list添加进去
+                    orderBySeatId.put(bySeatId.getSeatId(), Lists.newArrayList(bySeatId));
+                }
             }
         }
         // 将占座信息封装成前端需要的样式

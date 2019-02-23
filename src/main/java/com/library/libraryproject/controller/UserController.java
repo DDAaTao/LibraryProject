@@ -9,6 +9,7 @@ import com.library.libraryproject.entity.User;
 import com.library.libraryproject.manager.UserManager;
 import com.library.libraryproject.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static com.library.libraryproject.common.ResultCode.PARAM_ERROR;
+import static com.library.libraryproject.common.ResultCode.USER_LOGIN_ERROR;
 
 /**
  * @author dcl
@@ -132,13 +134,19 @@ public class UserController {
     @PostMapping("/login")
     @ResponseBody
     public AjaxResult userLogin(User user){
-        // todo 在此处将USER信息返回给前端
-
+        // 参数校验
+        if (StringUtils.isBlank(user.getUserNumber()) || StringUtils.isBlank(user.getUserPassword())){
+            return AjaxResult.fail(PARAM_ERROR.getCode(), "请输入用户账号或密码");
+        }
+        User userLogin = userService.userLogin(user);
+        if (userLogin == null){
+            return AjaxResult.fail(USER_LOGIN_ERROR.getCode(), "用户登陆失败，请检查用户名和密码是否有误");
+        }
         return AjaxResult.success();
     }
 
     /**
-     * 查询用户的占座信息，用于展示（手动结束占座）
+     * 查询用户的当前占座信息，用于展示（手动结束占座）
      * */
     @RequestMapping("/order/msg")
     @ResponseBody
@@ -147,4 +155,13 @@ public class UserController {
         return AjaxResult.success(byUserId);
     }
 
+    /**
+     * 查询用户所有占座记录
+     * */
+    @RequestMapping("/order/history")
+    @ResponseBody
+    public AjaxResult getUserOrderHistory(Integer userId){
+        List<Order> byUserId = orderDao.getUserOrderHistory(userId);
+        return AjaxResult.success(byUserId);
+    }
 }

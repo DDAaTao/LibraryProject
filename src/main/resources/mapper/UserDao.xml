@@ -147,6 +147,14 @@
         delete from user
         where user_id=#{userId,jdbcType=INTEGER}
     </delete>
+    <select id="findUserByNumberAndPassword" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        limit 1
+        where user_number=#{user.userNumber,jdbcType=VARCHAR}
+        and user_password=#{user.userPassword,jdbcType=VARCHAR}
+    </select>
 
 </mapper>
 

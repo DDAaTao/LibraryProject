@@ -14,7 +14,7 @@ public interface SeatStatusDao {
 
     int insertSelective(@Param("seatStatus") SeatStatus seatStatus);
 
-    int insertList(@Param("seatStatuss") List<SeatStatus> seatStatuss);
+    int insertList(@Param("seatStatus") List<SeatStatus> seatStatuss);
 
     int update(@Param("seatStatus") SeatStatus seatStatus);
 }

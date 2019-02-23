@@ -85,4 +85,10 @@ public class UserServiceImpl implements UserService{
         // 最后返回用户信息
         return user;
     }
+
+    @Override
+    public User userLogin(User user) {
+        User userByNumberAndPassword = userDao.findUserByNumberAndPassword(user);
+        return userByNumberAndPassword;
+    }
 }

@@ -40,7 +40,10 @@ public enum ResultCode {
     PARAM_ERROR("param.error", "参数校验失败"),
     ORDER_TIME_ERROR("order.time.error", "预约的相关时间选择有误"),
     ADD_USER_ERROR("add.user.error", "新增用户失败"),
-    FINISH_ORDER_FAIL("finish.order.fail", "结束占座失败");
+    FINISH_ORDER_FAIL("finish.order.fail", "结束占座失败"),
+    USER_LOGIN_ERROR("user.login.error", "用户登陆失败"),
+    DELETE_SEAT_ERROR("delete.seat.error", "删除座位失败")
+    ;
 
     private String code;
     private String msg;

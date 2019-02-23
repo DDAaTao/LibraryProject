@@ -39,4 +39,12 @@ public class SeatLocationServiceImpl implements SeatLocationService{
     public List<SeatLocation> getRoomSeats(String roomId) {
         return seatLocationDao.getRoomSeats(roomId);
     }
+
+    @Override
+    public int deleteSeat(String seatId) {
+        return seatLocationDao.update(SeatLocation.builder()
+                .seatId(seatId)
+                .deleted(1)
+                .build());
+    }
 }

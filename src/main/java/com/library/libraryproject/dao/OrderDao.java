@@ -1,5 +1,6 @@
 package com.library.libraryproject.dao;
 
+import com.google.common.collect.Lists;
 import com.library.libraryproject.entity.Param.DeleteOrderParam;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -36,8 +37,15 @@ public interface OrderDao {
      * */
     List<Order> findByDeleted(Integer deleted);
 
-    int deleteByOrderId(@Param("orderIds")List<Integer> orderIds);
+    /**
+     * 逻辑删除订单数据
+     * */
+    int deleteByOrderIds(@Param("orderIds") List<Integer> orderIds);
 
+    /**
+     * 获取用户的所有历史预约订单
+     * */
+    List<Order> getUserOrderHistory(@Param("userId") Integer userId);
 
 
 }
