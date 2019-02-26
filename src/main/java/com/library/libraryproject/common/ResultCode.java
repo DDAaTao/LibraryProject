@@ -42,7 +42,12 @@ public enum ResultCode {
     ADD_USER_ERROR("add.user.error", "新增用户失败"),
     FINISH_ORDER_FAIL("finish.order.fail", "结束占座失败"),
     USER_LOGIN_ERROR("user.login.error", "用户登陆失败"),
-    DELETE_SEAT_ERROR("delete.seat.error", "删除座位失败")
+    DELETE_SEAT_ERROR("delete.seat.error", "删除座位失败"),
+    RECOVER_SEAT_ERROR("recover.seat.error", "恢复座位失败"),
+
+
+
+    SYSTEM_ERROR("system.error", "系统异常")
     ;
 
     private String code;

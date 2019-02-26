@@ -1,6 +1,5 @@
 package com.library.libraryproject.service.impl;
 
-import com.library.libraryproject.entity.Param.RoomSeatsQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +44,19 @@ public class SeatLocationServiceImpl implements SeatLocationService{
         return seatLocationDao.update(SeatLocation.builder()
                 .seatId(seatId)
                 .deleted(1)
+                .build());
+    }
+
+    @Override
+    public int realDeleteSeat(String seatId) {
+        return seatLocationDao.deleteBySeatId(seatId);
+    }
+
+    @Override
+    public int recoverSeat(String seatId) {
+        return seatLocationDao.update(SeatLocation.builder()
+                .seatId(seatId)
+                .deleted(0)
                 .build());
     }
 }
