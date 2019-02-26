@@ -94,6 +94,7 @@ public class UserController {
         try {
             userService.insertSelective(user);
         } catch (Exception e){
+            log.error(e.getMessage());
             return AjaxResult.fail(ResultCode.ADD_USER_ERROR.getCode(), ResultCode.ADD_USER_ERROR.getMsg());
         }
         return AjaxResult.success();
@@ -110,6 +111,7 @@ public class UserController {
                 return AjaxResult.fail(ResultCode.DROP_FAIL.getCode(), "删除用户失败");
             }
         }catch (Exception e){
+            log.error(e.getMessage());
             return AjaxResult.fail(ResultCode.DROP_FAIL.getCode(), "删除用户失败");
         }
         return AjaxResult.success();

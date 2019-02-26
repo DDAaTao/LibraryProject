@@ -7,6 +7,7 @@ import com.library.libraryproject.entity.Param.OrderSeatParam;
 import com.library.libraryproject.entity.vo.RoomSeatAndStatusVO;
 import com.library.libraryproject.service.OrderService;
 import com.library.libraryproject.util.DateUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -26,6 +27,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/seat")
 @CrossOrigin
+@Slf4j
 public class SeatController {
 
     @Autowired
@@ -41,6 +43,7 @@ public class SeatController {
         try{
             checkOrderParam(param);
         }catch (Exception e){
+            log.error(e.getMessage());
             return AjaxResult.fail(ResultCode.PARAM_ERROR.getCode(), e.getMessage());
         }
         // 并且检验占座时间是否满足要求
@@ -54,6 +57,7 @@ public class SeatController {
             // 调用占座方法
             orderResult = orderService.orderSeat(param);
         }catch (Exception e){
+            log.error(e.getMessage());
             return AjaxResult.fail(ResultCode.ORDER_FAIL.getCode(), ResultCode.ORDER_FAIL.getMsg());
         }
         if (orderResult){
@@ -72,6 +76,7 @@ public class SeatController {
         try {
             orderService.finishOrder(userId);
         } catch (Exception e){
+            log.error(e.getMessage());
             return AjaxResult.fail(ResultCode.FINISH_ORDER_FAIL.getCode(), ResultCode.FINISH_ORDER_FAIL.getMsg());
         }
         return AjaxResult.success();
