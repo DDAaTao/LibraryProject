@@ -20,7 +20,18 @@ public interface SeatLocationService{
     List<SeatLocation> getRoomSeats(String roomId);
 
     /**
-     * 删除座（逻辑删除）
+     * 删除座位（逻辑删除）
      * */
     int deleteSeat(String seatId);
+
+    /**
+     * 删除座位（物理删除）
+     * */
+    int realDeleteSeat(String seatId);
+
+    /**
+     * 恢复逻辑删除的座位接口
+     * */
+    int recoverSeat(String seatId);
+
 }

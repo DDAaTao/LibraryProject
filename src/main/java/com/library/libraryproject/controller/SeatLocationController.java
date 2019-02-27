@@ -73,4 +73,32 @@ public class SeatLocationController {
         }
     }
 
+    /**
+     * 恢复逻辑删除座位方法（manager）
+     * */
+    @RequestMapping("/recover")
+    @ResponseBody
+    public AjaxResult recoverSeats(String seatId){
+        int i = seatLocationService.recoverSeat(seatId);
+        if (i >= 0){
+            return AjaxResult.success();
+        }else {
+            return AjaxResult.fail(ResultCode.RECOVER_SEAT_ERROR.getCode(), " 恢复座位失败，请检查座位选择是否有误");
+        }
+    }
+
+    /**
+     * 物理删除座位方法
+     * */
+    @RequestMapping("/realDelete")
+    @ResponseBody
+    public AjaxResult realDelete(String seatId){
+        int i = seatLocationService.realDeleteSeat(seatId);
+        if (i >= 0){
+            return AjaxResult.success();
+        }else {
+            return AjaxResult.fail(ResultCode.DELETE_SEAT_ERROR.getCode(), " 恢复座位失败，请检查座位选择是否有误");
+        }
+    }
+
 }

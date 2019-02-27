@@ -20,4 +20,6 @@ public interface SeatLocationDao {
 
     List<SeatLocation> getRoomSeats(@Param("seatRoom")String seatRoom);
 
+    int deleteBySeatId(@Param("seatId")String seatId);
+
 }

@@ -124,8 +124,8 @@ seat_id
             deleted = 1
         </set>
         where order_id in
-            (<foreach collection="seatIds" item="seatId" index="index" separator=",">
-              #{seatId,jdbcType=VARCHAR}
+            (<foreach collection="orderIds" item="orderId" index="index" separator=",">
+              #{orderId,jdbcType=VARCHAR}
             </foreach>)
     </update>
 
