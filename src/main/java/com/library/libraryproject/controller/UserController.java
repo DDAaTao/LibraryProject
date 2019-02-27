@@ -13,6 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -75,7 +76,7 @@ public class UserController {
      * */
     @PostMapping("/importExcel")
     @ResponseBody
-    public AjaxResult importExcel(MultipartFile userExcel){
+    public AjaxResult importExcel(@RequestBody MultipartFile userExcel){
         try {
             userManager.importUsers(userExcel);
         }catch (Exception e){
@@ -90,7 +91,7 @@ public class UserController {
      * */
     @PostMapping("/addUser")
     @ResponseBody
-    public AjaxResult addUser(User user){
+    public AjaxResult addUser(@RequestBody User user){
         try {
             userService.insertSelective(user);
         } catch (Exception e){
@@ -135,7 +136,7 @@ public class UserController {
      * */
     @PostMapping("/login")
     @ResponseBody
-    public AjaxResult userLogin(User user){
+    public AjaxResult userLogin(@RequestBody User user){
         // 参数校验
         if (StringUtils.isBlank(user.getUserNumber()) || StringUtils.isBlank(user.getUserPassword())){
             return AjaxResult.fail(PARAM_ERROR.getCode(), "请输入用户账号或密码");

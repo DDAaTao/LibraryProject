@@ -11,10 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -38,7 +35,7 @@ public class SeatController {
      * */
     @PostMapping("/order")
     @ResponseBody
-    public AjaxResult orderSeat(OrderSeatParam param){
+    public AjaxResult orderSeat(@RequestBody OrderSeatParam param){
         // 在此处进行参数校验和用户状态校验  todo 可优化：加一个统一的异常拦截过滤器，将对应的异常抛给前端
         try{
             checkOrderParam(param);

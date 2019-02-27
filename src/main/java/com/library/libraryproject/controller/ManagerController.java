@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,7 +30,7 @@ public class ManagerController {
      * */
     @PostMapping("/login")
     @ResponseBody
-    public AjaxResult managerLogin(Manager loginManager){
+    public AjaxResult managerLogin(@RequestBody Manager loginManager){
         try {
             // todo 此处返回是否有必要？ 设计完登录信息存储方式再做考虑
             Manager manager = managerService.searchByAccountAndPwd(
@@ -48,7 +49,7 @@ public class ManagerController {
      * */
     @PostMapping("/register")
     @ResponseBody
-    public AjaxResult managerRegister(Manager registerManager){
+    public AjaxResult managerRegister(@RequestBody Manager registerManager){
         try {
             int insertFlag = managerService.registerManager(registerManager);
             if (insertFlag < 1){
