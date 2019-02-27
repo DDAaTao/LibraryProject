@@ -145,7 +145,7 @@ public class UserController {
         if (userLogin == null){
             return AjaxResult.fail(USER_LOGIN_ERROR.getCode(), "用户登陆失败，请检查用户名和密码是否有误");
         }
-        return AjaxResult.success();
+        return AjaxResult.success(userLogin);
     }
 
     /**
