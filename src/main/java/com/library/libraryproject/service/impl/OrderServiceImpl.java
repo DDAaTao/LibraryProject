@@ -47,11 +47,6 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public int insertSelective(Order order){
-        return orderDao.insertSelective(order);
-    }
-
-    @Override
     public int insertList(List<Order> orders){
         return orderDao.insertList(orders);
     }
@@ -83,6 +78,8 @@ public class OrderServiceImpl implements OrderService{
         }
         // 如果上述异常情况无发生，则进行占座信息的插入
         int insert = orderDao.insert(Order.builder()
+                .userId(param.getUserId())
+                .seatId(param.getSeatId())
                 .orderCreate(DateUtils.now())
                 .orderStart(param.getOrderStart())
                 // 注意此处为了防止时间冲突，结束时间默认减去1S

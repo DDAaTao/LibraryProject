@@ -14,8 +14,6 @@ import org.springframework.stereotype.Repository;
 public interface OrderDao {
     int insert(@Param("order") Order order);
 
-    int insertSelective(@Param("order") Order order);
-
     int insertList(@Param("orders") List<Order> orders);
 
     int deleteOrder(@Param("param")DeleteOrderParam param);

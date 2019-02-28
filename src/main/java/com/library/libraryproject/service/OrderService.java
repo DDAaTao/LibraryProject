@@ -10,8 +10,6 @@ public interface OrderService{
 
     int insert(Order order);
 
-    int insertSelective(Order order);
-
     int insertList(List<Order> orders);
 
     /**

@@ -30,29 +30,24 @@ seat_id
         INSERT INTO order_log (
             order_id,
             user_id,
-            seat_id
+            seat_id,
+            order_status,
+            order_start,
+           order_finish,
+           order_create,
+           deleted
         ) VALUES (
             #{order.orderId,jdbcType=INTEGER},
             #{order.userId,jdbcType=INTEGER},
-            #{order.seatId,jdbcType=VARCHAR}
+            #{order.seatId,jdbcType=VARCHAR},
+            #{order.orderStatus,jdbcType=VARCHAR},
+            #{order.orderStart,jdbcType=DATE},
+            #{order.orderFinish,jdbcType=DATE},
+            #{order.orderCreate,jdbcType=DATE},
+            #{order.deleted,jdbcType=INTEGER}
         )
 </insert>
 
-    <!--auto generated Code-->
-    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="order.orderId">
-        INSERT INTO order_log
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="order.orderId!=null"> order_id,</if>
-            <if test="order.userId!=null"> user_id,</if>
-            <if test="order.seatId!=null"> seat_id</if>
-        </trim>
-        VALUES
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="order.orderId!=null"> #{order.orderId,jdbcType=INTEGER},</if>
-            <if test="order.userId!=null"> #{order.userId,jdbcType=INTEGER},</if>
-            <if test="order.seatId!=null"> #{order.seatId,jdbcType=VARCHAR}</if>
-        </trim>
-</insert>
 
     <!--auto generated Code-->
     <insert id="insertList">
@@ -73,12 +68,12 @@ seat_id
     <update id="deleteOrder">
         UPDATE order_log
         <set>
-            <if test="param.deleted != null"> deleted = #{param.deleted,jdbcType=INTEGER}</if>,
+            <if test="param.deleted != null"> deleted = #{param.deleted,jdbcType=INTEGER},</if>
              order_finish = #{param.mdfDate,jdbcType=DATE}
         </set>
 		WHERE order_id in
                 (<foreach collection="param.orderIds" item="orderId" index="index" separator=",">
-                    #{seatId,jdbcType=VARCHAR}
+                    #{orderId,jdbcType=INTEGER}
                 </foreach>)
     </update>
 
@@ -119,13 +114,13 @@ seat_id
     </select>
 
     <update id="deleteByOrderIds">
-        update
+        update order_log
         <set>
             deleted = 1
         </set>
         where order_id in
             (<foreach collection="orderIds" item="orderId" index="index" separator=",">
-              #{orderId,jdbcType=VARCHAR}
+              #{orderId,jdbcType=INTEGER}
             </foreach>)
     </update>
 
