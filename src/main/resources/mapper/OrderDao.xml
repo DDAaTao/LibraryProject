@@ -48,23 +48,6 @@ seat_id
         )
 </insert>
 
-
-    <!--auto generated Code-->
-    <insert id="insertList">
-        INSERT INTO order_log(
-            order_id,
-            user_id,
-            seat_id
-        )VALUES
-        <foreach collection="orders" item="order" index="index" separator=",">
-        (
-            #{order.orderId,jdbcType=INTEGER},
-            #{order.userId,jdbcType=INTEGER},
-            #{order.seatId,jdbcType=VARCHAR}
-        )
-        </foreach>
-</insert>
-
     <update id="deleteOrder">
         UPDATE order_log
         <set>

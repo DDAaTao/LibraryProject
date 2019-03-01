@@ -10,8 +10,6 @@ public interface OrderService{
 
     int insert(Order order);
 
-    int insertList(List<Order> orders);
-
     /**
      * 占座方法
      * */

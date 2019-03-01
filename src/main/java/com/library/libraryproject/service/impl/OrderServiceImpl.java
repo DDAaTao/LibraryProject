@@ -46,11 +46,6 @@ public class OrderServiceImpl implements OrderService{
         return orderDao.insert(order);
     }
 
-    @Override
-    public int insertList(List<Order> orders){
-        return orderDao.insertList(orders);
-    }
-
     /**
      * 需要注意是否已经被占座/占座的时间内是否有冲突，其次要考虑并发场景（CAS算法）
      * 前端也要做时间段的校验，双重控制

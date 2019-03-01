@@ -155,6 +155,16 @@
         and user_password=#{user.userPassword,jdbcType=VARCHAR}
         limit 1
     </select>
+    <update id="updateUsersStatus">
+        UPDATE user
+        <set>
+            user_status = #{param.status,jdbcType=VARCHAR}
+        </set>
+        WHERE user_id in
+        (<foreach collection="param.userIds" item="userId" index="index" separator=",">
+        #{userId,jdbcType=INTEGER}
+    </foreach>)
+    </update>
 
 </mapper>
 

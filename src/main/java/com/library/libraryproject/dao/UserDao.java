@@ -1,6 +1,7 @@
 package com.library.libraryproject.dao;
 
 
+import com.library.libraryproject.entity.Param.RecoverUserStatusParam;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,6 +28,7 @@ public interface UserDao {
 
     User findUserByNumberAndPassword(@Param("user")User user);
 
+    int updateUsersStatus(@Param("param") RecoverUserStatusParam param);
 
 
 }

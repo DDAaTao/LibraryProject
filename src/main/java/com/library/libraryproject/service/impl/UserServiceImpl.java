@@ -2,6 +2,7 @@ package com.library.libraryproject.service.impl;
 
 import com.library.libraryproject.dao.OrderDao;
 import com.library.libraryproject.entity.Order;
+import com.library.libraryproject.entity.Param.RecoverUserStatusParam;
 import com.library.libraryproject.entity.enums.UserStatus;
 import com.library.libraryproject.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public int update(User user){
         return userDao.update(user);
+    }
+
+    @Override
+    public int recoverUserStatus(RecoverUserStatusParam param) {
+        return userDao.updateUsersStatus(param);
     }
 
     @Override

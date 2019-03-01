@@ -1,6 +1,8 @@
 package com.library.libraryproject.service;
 
 import java.util.List;
+
+import com.library.libraryproject.entity.Param.RecoverUserStatusParam;
 import com.library.libraryproject.entity.User;
 
 public interface UserService{
@@ -10,6 +12,8 @@ public interface UserService{
     int insertList(List<User> users);
 
     int update(User user);
+
+    int recoverUserStatus(RecoverUserStatusParam param);
 
     /**
      * one user by id
