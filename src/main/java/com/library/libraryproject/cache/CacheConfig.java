@@ -27,14 +27,21 @@ public class CacheConfig {
     private static final int DEFAULT_MAXSIZE = 100;
     private static final int DEFAULT_TTL = 600;
 
+    /**
+     * 此枚举类即为需要添加缓存的对应的value
+     * */
     public enum Caches {
         /**
          * 有效期，最大数量
          * */
-        config(86400,100);
+        config(86400,100),
+        allRegion(600, 10);
+
+
 
         private int ttl = DEFAULT_TTL;
         private int maxSize = DEFAULT_MAXSIZE;
+
         Caches(int ttl, int maxSize) {
             this.ttl = ttl;
             this.maxSize = maxSize;

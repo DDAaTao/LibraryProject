@@ -7,6 +7,7 @@ import com.library.libraryproject.entity.OriginConfig;
 import com.library.libraryproject.entity.dto.Area;
 import com.library.libraryproject.entity.dto.Building;
 import com.library.libraryproject.service.OriginConfigService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -42,9 +43,10 @@ public class OriginConfigServiceImpl implements OriginConfigService{
     }
 
     /**
-     * todo 此处需要做缓存处理，可暂定5分钟缓存一次
+     * 此处做缓存处理，暂定10分钟缓存一次
      * */
     @Override
+    @Cacheable(value = "allRegion")
     public List<Area> getAllRegion() {
         List<OriginConfig> originConfigs = originConfigDao.find();
         List<Area> baseAreas = new ArrayList<>();
