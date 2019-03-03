@@ -53,24 +53,6 @@ public class OrderServiceImpl implements OrderService{
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean orderSeat(OrderSeatParam param) {
-        // 初步先在后端进行一次校验，后续再进行扩展
-        List<Order> orderList = orderDao.findBySeatId(param.getSeatId());
-        // 当数据库中有该座位的占座信息时，判断此处占座时间是否有冲突
-        if (!CollectionUtils.isEmpty(orderList)){
-            // 遍历所有占座信息
-            for (Order order : orderList) {
-                // 进行时间冲突的判断，冲突的情况分为两种，一种为起始时间在原区间中间
-                if (param.getOrderStart().getTime() > order.getOrderStart().getTime()
-                        && param.getOrderStart().getTime() < order.getOrderFinish().getTime()){
-                    return false;
-                }
-                // 另外一种是结束时间在原区间中间
-                if (param.getOrderFinish().getTime() > order.getOrderStart().getTime()
-                        && param.getOrderFinish().getTime() < order.getOrderFinish().getTime()){
-                    return false;
-                }
-            }
-        }
         // 如果上述异常情况无发生，则进行占座信息的插入
         int insert = orderDao.insert(Order.builder()
                 .userId(param.getUserId())
@@ -88,6 +70,36 @@ public class OrderServiceImpl implements OrderService{
                 .userStatus(UserStatus.BOOKED.getCode())
                 .build());
         return insert > 0 ;
+    }
+
+    @Override
+    public Boolean userAndSeatStatusCheck(OrderSeatParam param) {
+        // 进行用户状态的校验
+        User user = userDao.findByUserId(param.getUserId());
+        // 如果用户的状态不是自由的状态的话
+        if (!UserStatus.FREE.getCode().equalsIgnoreCase(user.getUserStatus())){
+            return false;
+        }
+
+        // 进行座位状态的校验
+        List<Order> orderList = orderDao.findBySeatId(param.getSeatId());
+        // 当数据库中有该座位的占座信息时，判断此处占座时间是否有冲突
+        if (!CollectionUtils.isEmpty(orderList)){
+            // 遍历所有占座信息
+            for (Order order : orderList) {
+                // 进行时间冲突的判断，冲突的情况分为两种，一种为起始时间在原区间中间
+                if (param.getOrderStart().getTime() > order.getOrderStart().getTime()
+                        && param.getOrderStart().getTime() < order.getOrderFinish().getTime()){
+                    return false;
+                }
+                // 另外一种是结束时间在原区间中间
+                if (param.getOrderFinish().getTime() > order.getOrderStart().getTime()
+                        && param.getOrderFinish().getTime() < order.getOrderFinish().getTime()){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override

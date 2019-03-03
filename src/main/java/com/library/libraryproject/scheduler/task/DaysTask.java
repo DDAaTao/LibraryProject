@@ -53,15 +53,21 @@ public class DaysTask {
                 needRecoverUserIds.add(order.getUserId());
             }
         }
+        if (CollectionUtils.isEmpty(needDeleteIds)){
+            log.info("none order ! orderTask end:" + DateUtils.now());
+            return;
+        }
         // 执行逻辑删除订单信息的sql
         orderDao.deleteByOrderIds(needDeleteIds);
         log.info("完成逻辑删除订单信息:" + DateUtils.now());
         // 执行恢复相关用户状态的sql
-        userService.recoverUserStatus(RecoverUserStatusParam.builder()
-                .status(UserStatus.FREE.getCode())
-                .userIds(needRecoverUserIds)
-                .build());
-        log.info("完成恢复相关用户状态:" + DateUtils.now());
+        if (!CollectionUtils.isEmpty(needRecoverUserIds)){
+            userService.recoverUserStatus(RecoverUserStatusParam.builder()
+                    .status(UserStatus.FREE.getCode())
+                    .userIds(needRecoverUserIds)
+                    .build());
+            log.info("完成恢复相关用户状态:" + DateUtils.now());
+        }
         log.info("orderTask end:" + DateUtils.now());
     }
 }

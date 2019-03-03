@@ -16,6 +16,11 @@ public interface OrderService{
     Boolean orderSeat(OrderSeatParam param);
 
     /**
+     * 占座前校验用户状态与座位状态
+     * */
+    Boolean userAndSeatStatusCheck(OrderSeatParam param);
+
+    /**
      * 获取某座位的今/明两天的占座信息,实际上其他天的信息已经被其他逻辑限制了
      * */
     List<Order> getNearOrderMsg(String seatId);

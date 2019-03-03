@@ -36,18 +36,22 @@ public class SeatController {
     @PostMapping("/order")
     @ResponseBody
     public AjaxResult orderSeat(@RequestBody OrderSeatParam param){
-        // 在此处进行参数校验和用户状态校验  todo 可优化：加一个统一的异常拦截过滤器，将对应的异常抛给前端
+        // 在此处进行参数校验和用户状态校验
         try{
             checkOrderParam(param);
         }catch (Exception e){
             log.error(e.getMessage());
             return AjaxResult.fail(ResultCode.PARAM_ERROR.getCode(), e.getMessage());
         }
-        // 并且检验占座时间是否满足要求
+
+        // 检验占座时间是否满足要求
         if (!checkOrderTime(param)){
             return AjaxResult.fail(ResultCode.ORDER_TIME_ERROR.getCode(), ResultCode.ORDER_TIME_ERROR.getMsg());
         }
-
+        // 校验用户状态与用户状态
+        if (!orderService.userAndSeatStatusCheck(param)){
+            return AjaxResult.fail(ResultCode.ORDER_FAIL.getCode(), "请检查用户状态是否有误或预约时间是否冲突");
+        }
 
         Boolean orderResult;
         try {
@@ -116,22 +120,25 @@ public class SeatController {
      * */
     private Boolean checkOrderTime(OrderSeatParam param){
         // 预约起始时间要大于今天的起始,否则直接返回false
-        if (DateUtils.getDayStartTime(DateUtils.now()).getTime() > param.getOrderStart().getTime()){
+        if (DateUtils.getDayStartTime(DateUtils.now()).getTime() >= param.getOrderStart().getTime()){
             return false;
         }
-
+        // 预约时间要大于半小时
+        if (!(param.getOrderFinish().getTime() - param.getOrderStart().getTime() >= 1800000L)){
+            return false;
+        }
         // 先获取当天晚上六点的时间
         Date beginTime = DateUtils.getFormatDate("18:00:00", "HH:mm:ss");
         // 判断当前时间是否大于六点
         if (DateUtils.sameDayCompare(DateUtils.now(), beginTime)){
             // 如果当前时间已经大于六点，则允许预定，只要保证预约结束时间在第二天结束之前即可
             Date tomorrow = DateUtils.addDays(DateUtils.now(), 1);
-            if (DateUtils.getDayEndTime(tomorrow).getTime() > param.getOrderFinish().getTime()){
+            if (DateUtils.getDayEndTime(tomorrow).getTime() >= param.getOrderFinish().getTime()){
                 return true;
             }
         } else {
             //如果当前时间小于六点，那么只能预约今天的，要保证预约结束时间在今天结束之前
-            if (DateUtils.getDayEndTime(DateUtils.now()).getTime() > param.getOrderFinish().getTime()){
+            if (DateUtils.getDayEndTime(DateUtils.now()).getTime() >= param.getOrderFinish().getTime()){
                 return true;
             }
         }

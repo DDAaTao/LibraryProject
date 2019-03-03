@@ -41,9 +41,9 @@ seat_id
             #{order.userId,jdbcType=INTEGER},
             #{order.seatId,jdbcType=VARCHAR},
             #{order.orderStatus,jdbcType=VARCHAR},
-            #{order.orderStart,jdbcType=DATE},
-            #{order.orderFinish,jdbcType=DATE},
-            #{order.orderCreate,jdbcType=DATE},
+            #{order.orderStart,jdbcType=TIMESTAMP},
+            #{order.orderFinish,jdbcType=TIMESTAMP},
+            #{order.orderCreate,jdbcType=TIMESTAMP},
             #{order.deleted,jdbcType=INTEGER}
         )
 </insert>
@@ -52,7 +52,7 @@ seat_id
         UPDATE order_log
         <set>
             <if test="param.deleted != null"> deleted = #{param.deleted,jdbcType=INTEGER},</if>
-             order_finish = #{param.mdfDate,jdbcType=DATE}
+             order_finish = #{param.mdfDate,jdbcType=TIMESTAMP}
         </set>
 		WHERE order_id in
                 (<foreach collection="param.orderIds" item="orderId" index="index" separator=",">
