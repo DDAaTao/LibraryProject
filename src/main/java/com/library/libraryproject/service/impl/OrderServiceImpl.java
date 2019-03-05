@@ -140,6 +140,7 @@ public class OrderServiceImpl implements OrderService{
             if (roomSeat.getDeleted() == 1){
                 resultList.add(RoomSeatAndStatusVO.builder()
                         .seatId(roomSeat.getSeatId())
+                        .seatNumber(roomSeat.getSeatNumber())
                         .seatStatus(SeatStatusType.DEPRECATED.getCode())
                         .build());
                 continue;
@@ -149,11 +150,13 @@ public class OrderServiceImpl implements OrderService{
             if (CollectionUtils.isEmpty(orders)){
                 resultList.add(RoomSeatAndStatusVO.builder()
                         .seatId(roomSeat.getSeatId())
+                        .seatNumber(roomSeat.getSeatNumber())
                         .seatStatus(SeatStatusType.FREE.getCode())
                         .build());
             } else {
                 resultList.add(RoomSeatAndStatusVO.builder()
                         .seatId(roomSeat.getSeatId())
+                        .seatNumber(roomSeat.getSeatNumber())
                         .seatStatus(SeatStatusType.BOOKED.getCode())
                         .build());
             }
