@@ -18,7 +18,7 @@ public class DateTest {
 
     @Test
     public void testGetHours(){
-        // todo 先转化为小时维度点字符串，然后再让字符串转化为今天点时间，然后再进行比较
+        // 先转化为小时维度点字符串，然后再让字符串转化为今天点时间，然后再进行比较
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
         System.out.println(simpleDateFormat.format(new Date()));
         try {

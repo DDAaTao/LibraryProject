@@ -117,10 +117,15 @@ public class SeatController {
      * 进行时间的判断是否满足要求（用于占座上时间的限制）
      * 主要逻辑是判断当前时间是否大于18点，如果大于大于18点的话，则允许第二天的占座，并且只允许提前一天
      * 判断时间有两个维度，一个是创建时间、一个是预约开始和结束时间
+     * 如果返回false代表不满足要求，如果返回true代表满足要求
      * */
     private Boolean checkOrderTime(OrderSeatParam param){
         // 预约起始时间要大于今天的起始,否则直接返回false
-        if (DateUtils.getDayStartTime(DateUtils.now()).getTime() >= param.getOrderStart().getTime()){
+        /*if (DateUtils.getDayStartTime(DateUtils.now()).getTime() >= param.getOrderStart().getTime()){
+            return false;
+        }*/
+        // 修改为大于等于当前时间
+        if (DateUtils.now().getTime() > param.getOrderStart().getTime()){
             return false;
         }
         // 预约时间要大于半小时

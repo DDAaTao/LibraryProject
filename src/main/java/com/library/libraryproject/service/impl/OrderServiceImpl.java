@@ -76,8 +76,8 @@ public class OrderServiceImpl implements OrderService{
     public Boolean userAndSeatStatusCheck(OrderSeatParam param) {
         // 进行用户状态的校验
         User user = userDao.findByUserId(param.getUserId());
-        // 如果用户的状态不是自由的状态的话
-        if (!UserStatus.FREE.getCode().equalsIgnoreCase(user.getUserStatus())){
+        // 如果用户的状态不是自由的状态的话,也过滤的非法用户
+        if (user == null || !UserStatus.FREE.getCode().equalsIgnoreCase(user.getUserStatus())){
             return false;
         }
 
