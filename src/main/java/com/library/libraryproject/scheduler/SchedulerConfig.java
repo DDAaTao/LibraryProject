@@ -3,6 +3,7 @@ package com.library.libraryproject.scheduler;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
@@ -20,6 +21,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
  * 此处使用ScheduledThreadPool线程池进行控制
  * */
 @Configuration
+@EnableScheduling
 public class SchedulerConfig implements SchedulingConfigurer {
     @Override
     public void configureTasks(ScheduledTaskRegistrar scheduledTaskRegistrar) {

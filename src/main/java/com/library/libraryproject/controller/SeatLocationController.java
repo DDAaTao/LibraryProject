@@ -17,6 +17,7 @@ import java.util.List;
  * @author dcl
  * */
 @Controller
+@CrossOrigin
 @RequestMapping("/location")
 public class SeatLocationController {
 
