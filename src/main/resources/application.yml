@@ -12,9 +12,9 @@ spring:
       - config
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://116.62.222.97:3306/LibraryProject?useUnicode=true&characterEncoding=utf-8
-      username: root
-      password: fan6135081
+      url: jdbc:mysql://0.0.0.0:3306/LibraryProject?useUnicode=true&characterEncoding=utf-8
+      username: example
+      password: example
       type: com.alibaba.druid.pool.DruidDataSource
 mybatis:
   mapper-locations: classpath:mapper/*Dao.xml
