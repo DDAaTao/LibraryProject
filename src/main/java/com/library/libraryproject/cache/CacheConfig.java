@@ -59,6 +59,7 @@ public class CacheConfig {
 
     /**
      * 创建基于Caffeine的Cache Manager
+     * Primary注解表示注入的时候优先选择
      * */
     @Bean
     @Primary
