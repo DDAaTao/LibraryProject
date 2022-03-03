@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.4.RELEASE</version>
+		<version>2.1.13.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -31,26 +31,6 @@
 	</properties>
 
 	<dependencies>
-		<!-- quartz 相关依赖包 -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.quartz-scheduler</groupId>
-			<artifactId>quartz</artifactId>
-			<version>2.3.2</version>
-		</dependency>
-		<!-- Xxl核心包 -->
-		<dependency>
-			<groupId>com.xuxueli</groupId>
-			<artifactId>xxl-job-core</artifactId>
-			<version>2.3.0</version>
-		</dependency>
 		<!-- 引入Caffeine本地缓存技术 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
